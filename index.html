@@ -116,6 +116,7 @@ footer p+p{margin-top:10px}
   <p class="reading-note" id="readingnote">Reaching the buoy…</p>
   <div class="instruments">
     <div><span class="label">Wind</span><div class="val" id="wind">—</div></div>
+    <div id="gustbox" hidden><span class="label">Gusts</span><div class="val" id="gusts">—</div></div>
     <div><span class="label">Waves</span><div class="val" id="waves">—</div></div>
   </div>
 </div>
@@ -196,9 +197,11 @@ async function loadBuoy(){
   $("readingnote").innerHTML = note;
 
   if(r.avg_wind != null && r.wind_dir != null){
-    let w = Math.round(r.avg_wind) + "kt " + COMPASS[Math.round(r.wind_dir/22.5)%16];
-    if(r.gust_speed != null) w += " · g" + Math.round(r.gust_speed);
-    $("wind").textContent = w;
+    $("wind").textContent = Math.round(r.avg_wind) + "kt " + COMPASS[Math.round(r.wind_dir/22.5)%16];
+  }
+  if(r.gust_speed != null){
+    $("gusts").textContent = Math.round(r.gust_speed) + "kt";
+    $("gustbox").hidden = false;
   }
   if(r.wave_height != null) $("waves").textContent = r.wave_height.toFixed(1) + "m";
 }
