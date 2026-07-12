@@ -1,0 +1,52 @@
+{
+ "updated": "2026-07-12T20:34:57+00:00",
+ "tested": "2026-07-06",
+ "beaches": [
+  {
+   "name": "Blackrock Baths",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Coliemore Harbour",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Corbawn Lane",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Dun Laoghaire Baths",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Forty Foot",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Killiney",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Sandycove",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Seapoint",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "White Rock",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  }
+ ],
+ "alerts": []
+}

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dublin Bay Sea Temperature — Live Buoy Readings, Tides & Water Quality</title>
+<meta name="description" content="Live sea temperature, wind, waves, today's tides and EPA bathing water quality for Dublin Bay swimmers — Forty Foot, Seapoint, Sandycove, Killiney and more. Updated hourly from the Dublin Bay buoy.">
+<meta property="og:title" content="Dublin Bay Sea Temperature — live right now">
+<meta property="og:description" content="Sea temp, wind, waves, tides and bathing water quality for Dublin Bay swimmers, straight from the buoy.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B242C'/%3E%3Ccircle cx='16' cy='14' r='7' fill='%23FF6B35'/%3E%3Cpath d='M2 25c3-2.5 6 2.5 9 0s6 2.5 9 0 6 2.5 10 0' stroke='%23EAF2F0' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B242C; --surface:#10333C; --line:#1D4550;
+  --ink:#EAF2F0; --ink2:#9FB8B9; --accent:#FF6B35; --curve:#4FA3A5;
+  --ok:#58C29A; --mid:#E4B04A; --bad:#E4604E;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#EFF4F3; --surface:#FAFCFB; --line:#D5E0DE;
+    --ink:#12333A; --ink2:#557072; --accent:#DE4E17; --curve:#2E7F82;
+    --ok:#1F8A5D; --mid:#9A6E14; --bad:#BA3927;
+  }
+}
+*{box-sizing:border-box;margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font:400 17px/1.55 Barlow, system-ui, sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:660px;margin:0 auto;padding:0 20px 64px}
+a{color:inherit}
+.label{
+  font:600 14px/1 "Barlow Condensed", sans-serif;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--ink2);
+}
+.mono{font-family:"IBM Plex Mono", monospace}
+
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0 0}
+.mark{display:flex;align-items:center;gap:10px;font:600 18px "Barlow Condensed",sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.mark .dot{width:14px;height:14px;border-radius:50%;background:var(--accent);flex:none}
+nav{display:flex;gap:14px}
+nav a{font:500 14px Barlow,sans-serif;color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--accent)}
+
+#alertbar{display:none;margin:20px 0 0;padding:12px 16px;border-radius:10px;background:var(--bad);color:#fff;font-weight:500}
+
+.hero{padding:56px 0 8px}
+h1.label{margin-bottom:14px}
+.temp{font:500 clamp(84px,22vw,148px)/0.95 "IBM Plex Mono",monospace;letter-spacing:-.04em}
+.temp .unit{font-size:.35em;color:var(--ink2);letter-spacing:0}
+.reading-note{margin-top:10px;color:var(--ink2)}
+.reading-note strong{color:var(--ink);font-weight:500}
+.trend{color:var(--ink2)}
+.instruments{display:flex;gap:36px;margin:34px 0 0;flex-wrap:wrap}
+.instruments div{min-width:100px}
+.instruments .val{font:500 26px/1.2 "IBM Plex Mono",monospace;margin-top:6px}
+
+section{margin-top:64px}
+section>.label{display:block;margin-bottom:18px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+
+#tidecurve{width:100%;height:auto;display:block}
+.tide-times{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.tide-times span{
+  font:500 15px "IBM Plex Mono",monospace;
+  border:1px solid var(--line);border-radius:8px;padding:6px 10px;color:var(--ink2)
+}
+.tide-times span b{color:var(--ink);font-weight:500}
+
+.spots{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.spot{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 14px}
+.spot .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.spot .name{font-weight:500;font-size:15.5px}
+.spot .st{font-size:13.5px;color:var(--ink2)}
+.tested{margin-top:14px;color:var(--ink2);font-size:15px}
+
+.follow{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.follow a{
+  text-decoration:none;font-weight:500;font-size:15.5px;
+  border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--surface)
+}
+.follow a:hover,.follow a:focus-visible{border-color:var(--accent)}
+.follow a.kofi{background:var(--accent);border-color:var(--accent);color:#fff}
+
+footer{margin-top:72px;padding-top:26px;border-top:1px solid var(--line);color:var(--ink2);font-size:14.5px}
+footer p+p{margin-top:10px}
+.err{color:var(--ink2);font-style:italic}
+
+@media (prefers-reduced-motion: no-preference){
+  .pulse{animation:pulse 2.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="mark"><span class="dot"></span>Dublin Bay Temp</div>
+  <nav aria-label="Social links">
+    <a href="https://x.com/DublinBayTemp">X</a>
+    <a href="https://bsky.app/profile/dublinbaytemp.bsky.social">Bluesky</a>
+    <a href="https://ko-fi.com/dublinbaytemp">Ko-fi</a>
+  </nav>
+</header>
+
+<div id="alertbar" role="alert"></div>
+
+<div class="hero">
+  <h1 class="label">Dublin Bay sea temperature</h1>
+  <div class="temp" id="temp">—<span class="unit">°C</span></div>
+  <p class="reading-note" id="readingnote">Reaching the buoy…</p>
+  <div class="instruments">
+    <div><span class="label">Wind</span><div class="val" id="wind">—</div></div>
+    <div><span class="label">Waves</span><div class="val" id="waves">—</div></div>
+  </div>
+</div>
+
+<section aria-labelledby="tlabel">
+  <span class="label" id="tlabel">Today's tide · Dublin Port</span>
+  <div class="panel">
+    <svg id="tidecurve" viewBox="0 0 640 170" role="img" aria-label="Tide height curve for today"></svg>
+    <div class="tide-times" id="tidetimes"></div>
+  </div>
+</section>
+
+<section aria-labelledby="wlabel">
+  <span class="label" id="wlabel">Bathing water quality · Dún Laoghaire-Rathdown</span>
+  <div class="spots" id="spots"></div>
+  <p class="tested" id="tested"></p>
+</section>
+
+<section aria-labelledby="flabel">
+  <span class="label" id="flabel">Twice a day, wherever you follow</span>
+  <p>The bot posts all of this — sea temp, wind, waves, tides, water quality and swim alerts — every morning and evening at 5:10.</p>
+  <div class="follow">
+    <a href="https://x.com/DublinBayTemp">Follow on X</a>
+    <a href="https://bsky.app/profile/dublinbaytemp.bsky.social">Follow on Bluesky</a>
+    <a class="kofi" href="https://ko-fi.com/dublinbaytemp">Keep it afloat ☕</a>
+  </div>
+</section>
+
+<footer>
+  <p>An unofficial community service for Dublin Bay swimmers. Readings come from the Dublin Bay buoy at the Safe Water Mark (Commissioners of Irish Lights), via the community API at <a href="https://dublinbaybuoy.com">dublinbaybuoy.com</a>. Tide predictions: Marine Institute. Bathing water quality &amp; swim notices: EPA.</p>
+  <p>Data can lag or misbehave — always judge conditions yourself before getting in.</p>
+</footer>
+
+</div>
+
+<noscript><style>.hero,section{display:none}</style>
+<p style="max-width:660px;margin:40px auto;padding:0 20px">This page needs JavaScript to fetch live readings. The same updates are posted twice daily at <a href="https://x.com/DublinBayTemp">@DublinBayTemp on X</a> and <a href="https://bsky.app/profile/dublinbaytemp.bsky.social">on Bluesky</a>.</p></noscript>
+
+<script>
+const BUOY = "https://api.dublinbaybuoy.com/rest/v1";
+const KEY = "sb_publishable_R5KkIpbiwNajUyx3I4aewQ_S4NI8hl3";
+const ERDDAP = "https://erddap.marine.ie/erddap/tabledap/IMI_TidePrediction_HighLow.csv";
+const TZ = "Europe/Dublin";
+const COMPASS = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+
+const $ = id => document.getElementById(id);
+const fmtTime = d => new Intl.DateTimeFormat("en-IE",{timeZone:TZ,hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
+const median = a => { const s=[...a].sort((x,y)=>x-y); return s[Math.floor(s.length/2)]; };
+
+async function buoyFetch(path){
+  const r = await fetch(BUOY+path, {headers:{apikey:KEY}});
+  if(!r.ok) throw new Error("buoy "+r.status);
+  return r.json();
+}
+
+async function loadBuoy(){
+  const rows = await buoyFetch("/readings?select=timestamp,water_temp,wave_height,avg_wind,gust_speed,wind_dir&water_temp=not.is.null&order=timestamp.desc&limit=6");
+  if(!rows.length) throw new Error("no readings");
+  // Skip uncorroborated single-reading sensor spikes.
+  let r = rows[0];
+  for(const cand of rows){
+    const others = rows.filter(x=>x!==cand).map(x=>x.water_temp);
+    if(Math.abs(cand.water_temp - median(others)) <= 1.5){ r = cand; break; }
+  }
+  $("temp").innerHTML = r.water_temp.toFixed(1) + '<span class="unit">°C</span>';
+  document.title = r.water_temp.toFixed(1) + "°C right now — Dublin Bay Sea Temperature";
+
+  let note = 'Live from the <strong>Dublin Bay buoy</strong> · reading from ' + fmtTime(new Date(r.timestamp));
+  try{
+    const cutoff = new Date(Date.now()-7*864e5).toISOString();
+    const wk = await buoyFetch(`/readings?select=water_temp&water_temp=not.is.null&timestamp=lte.${cutoff}&order=timestamp.desc&limit=1`);
+    if(wk.length){
+      const d = r.water_temp - wk[0].water_temp;
+      note += Math.abs(d) < 0.1 ? ' · <span class="trend">same as last week</span>'
+        : ` · <span class="trend">${Math.abs(d).toFixed(1)}°C ${d>0?"warmer":"cooler"} than last week</span>`;
+    }
+  }catch(e){}
+  $("readingnote").innerHTML = note;
+
+  if(r.avg_wind != null && r.wind_dir != null){
+    let w = Math.round(r.avg_wind) + "kt " + COMPASS[Math.round(r.wind_dir/22.5)%16];
+    if(r.gust_speed != null) w += " · g" + Math.round(r.gust_speed);
+    $("wind").textContent = w;
+  }
+  if(r.wave_height != null) $("waves").textContent = r.wave_height.toFixed(1) + "m";
+}
+
+function dublinDayStartUTC(){
+  const now = new Date();
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-IE",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(now).map(x=>[x.type,x.value]));
+  let guess = Date.UTC(+p.year, +p.month-1, +p.day);
+  // Adjust for Dublin's UTC offset at that instant (0 or +60 min).
+  const local = new Date(new Date(guess).toLocaleString("en-US",{timeZone:TZ}));
+  const off = (local - guess) / 60000;
+  return new Date(guess - off*60000);
+}
+
+async function loadTides(){
+  const day0 = dublinDayStartUTC(), day1 = new Date(+day0 + 864e5);
+  const from = new Date(+day0 - 12*36e5).toISOString().slice(0,19)+"Z";
+  const to = new Date(+day1 + 12*36e5).toISOString().slice(0,19)+"Z";
+  const url = `${ERDDAP}?time,tide_time_category,Water_Level_ODMalin&stationID=%22Dublin_Port%22&time%3E=${from}&time%3C=${to}`;
+  const txt = await (await fetch(url)).text();
+  const ev = txt.trim().split("\n").slice(2).map(l=>{
+    const c = l.split(",");
+    return {t:new Date(c[0]), cat:c[1], h:+c[2]};
+  }).filter(e=>!isNaN(e.h));
+  if(ev.length < 2) throw new Error("no tide data");
+
+  // Cosine interpolation between consecutive extremes.
+  const height = ms => {
+    let a = ev[0], b = ev[ev.length-1];
+    for(let i=0;i<ev.length-1;i++) if(+ev[i].t<=ms && ms<=+ev[i+1].t){ a=ev[i]; b=ev[i+1]; break; }
+    const f = (ms-+a.t)/(+b.t-+a.t||1);
+    return (a.h+b.h)/2 + (a.h-b.h)/2*Math.cos(Math.PI*Math.min(Math.max(f,0),1));
+  };
+
+  const W=640,H=170,PT=30,PB=26,PL=8,PR=8;
+  const hs=[], N=144;
+  for(let i=0;i<=N;i++) hs.push(height(+day0 + i*864e5/N));
+  const hmin=Math.min(...hs)-0.25, hmax=Math.max(...hs)+0.25;
+  const X=i=>PL+(W-PL-PR)*i/N, Y=h=>PT+(H-PT-PB)*(1-(h-hmin)/(hmax-hmin));
+  let path="M";
+  for(let i=0;i<=N;i++) path += (i?"L":"") + X(i).toFixed(1)+","+Y(hs[i]).toFixed(1);
+
+  const css = v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  let svg = `<path d="${path}" fill="none" stroke="${css('--curve')}" stroke-width="2.5" stroke-linecap="round"/>`;
+  // Baseline hour ticks
+  for(const h of [0,6,12,18,24]){
+    const x = PL+(W-PL-PR)*h/24;
+    svg += `<text x="${x}" y="${H-6}" font-family="IBM Plex Mono" font-size="11" fill="${css('--ink2')}" text-anchor="middle">${String(h).padStart(2,"0")}</text>`;
+  }
+  // Today's extremes, labeled directly
+  const today = ev.filter(e=>e.t>=day0 && e.t<day1);
+  for(const e of today){
+    const x = PL+(W-PL-PR)*((+e.t - +day0)/864e5), y = Y(e.h);
+    const up = e.cat==="HIGH";
+    svg += `<circle cx="${x}" cy="${y}" r="3.5" fill="${css('--curve')}"/>` +
+      `<text x="${x}" y="${y+(up?-12:18)}" font-family="IBM Plex Mono" font-size="12.5" fill="${css('--ink')}" text-anchor="middle">${fmtTime(e.t)}</text>`;
+  }
+  // Now marker
+  const nowMs = Date.now();
+  if(nowMs>=+day0 && nowMs<+day1){
+    const x = PL+(W-PL-PR)*((nowMs-+day0)/864e5), y = Y(height(nowMs));
+    svg += `<circle class="pulse" cx="${x}" cy="${y}" r="6" fill="${css('--accent')}"/>`;
+  }
+  $("tidecurve").innerHTML = svg;
+
+  const rising = height(nowMs+9e5) > height(nowMs);
+  $("tidetimes").innerHTML = today.map(e=>
+    `<span><b>${e.cat==="HIGH"?"High":"Low"}</b> ${fmtTime(e.t)}</span>`).join("") +
+    `<span>${rising?"Rising":"Falling"} now</span>`;
+}
+
+async function loadWater(){
+  const d = await (await fetch("water.json?t="+Date.now())).json();
+  const color = s => s==="Excellent"||s==="Good" ? "var(--ok)" : s==="Sufficient" ? "var(--mid)" : "var(--bad)";
+  $("spots").innerHTML = d.beaches.map(b=>
+    `<div class="spot"><span class="dot" style="background:${color(b.status)}"></span>
+     <span><span class="name">${b.name}</span><br><span class="st">${b.status}</span></span></div>`).join("");
+  const days = Math.round((Date.now() - new Date(d.tested))/864e5);
+  $("tested").textContent = `EPA samples, tested ${days<=0?"today":days+" day"+(days===1?"":"s")+" ago"} — sampled weekly in season.`;
+  if(d.alerts && d.alerts.length){
+    const bar = $("alertbar");
+    bar.style.display = "block";
+    bar.textContent = "⚠️ " + d.alerts.map(a=>`${a.type} at ${a.beach}`).join(" · ") + " (EPA notice)";
+  }
+}
+
+loadBuoy().catch(()=>{ $("readingnote").innerHTML = '<span class="err">Couldn\'t reach the buoy just now — the latest reading is on <a href="https://x.com/DublinBayTemp">the X feed</a>.</span>'; });
+loadTides().catch(()=>{ $("tidetimes").innerHTML = '<span class="err">Tide service unreachable right now.</span>'; });
+loadWater().catch(()=>{ $("tested").innerHTML = '<span class="err">Water quality data unavailable right now.</span>'; });
+</script>
+</body>
+</html>
