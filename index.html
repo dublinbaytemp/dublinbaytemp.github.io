@@ -31,7 +31,7 @@ body{
   font:400 17px/1.55 Barlow, system-ui, sans-serif;
   -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:660px;margin:0 auto;padding:0 20px 64px}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 64px}
 a{color:inherit}
 .label{
   font:600 14px/1 "Barlow Condensed", sans-serif;
@@ -55,8 +55,8 @@ h1.label{margin-bottom:14px}
 .reading-note{margin-top:10px;color:var(--ink2)}
 .reading-note strong{color:var(--ink);font-weight:500}
 .trend{color:var(--ink2)}
-.hero-row{display:flex;gap:44px;align-items:flex-end;flex-wrap:wrap}
-.hero-main{flex:1 1 300px}
+.hero-row{display:flex;gap:36px;align-items:flex-end;flex-wrap:wrap}
+.hero-main{flex:1 1 300px;min-width:0}
 .spark{flex:1 1 240px;max-width:320px;padding-bottom:10px}
 .spark-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:12px}
 .spark-head .mono{font-size:12.5px;color:var(--ink2);white-space:nowrap}
@@ -260,7 +260,9 @@ function drawSpark(rowsDesc){
   const pmax = pts.reduce((a,b)=>b.v>a.v?b:a), pmin = pts.reduce((a,b)=>b.v<a.v?b:a);
   for(const [p,up] of [[pmax,true],[pmin,false]]){
     const x = Math.min(Math.max(X(p.t),22),W-24);
-    svg += `<text x="${x}" y="${Y(p.v)+(up?-7:13)}" font-family="IBM Plex Mono" font-size="11" fill="${cssv('--ink2')}" text-anchor="middle">${p.v.toFixed(1)}</text>`;
+    // Flip the low label above its point if it would sit on the day ticks.
+    const ly = up || Y(p.v)+13 > H-PB ? Y(p.v)-7 : Y(p.v)+13;
+    svg += `<text x="${x}" y="${ly}" font-family="IBM Plex Mono" font-size="11" fill="${cssv('--ink2')}" text-anchor="middle">${p.v.toFixed(1)}</text>`;
   }
   const last = pts[pts.length-1];
   svg += `<circle cx="${X(last.t)}" cy="${Y(last.v)}" r="4" fill="${cssv('--accent')}"/>` +
