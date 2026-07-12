@@ -81,6 +81,18 @@ footer{margin-top:72px;padding-top:26px;border-top:1px solid var(--line);color:v
 </section>
 
 <section>
+  <span class="label">Android home-screen widget</span>
+  <p>Via <b>KWGT</b> (Kustom Widget Maker) — the closest Android equivalent. You'll need the KWGT Pro key (a few euro, one-off) for its web-fetch feature:</p>
+  <ol>
+    <li>Install <b>KWGT</b> from the Play Store (+ the Pro key)</li>
+    <li>Long-press your home screen → Widgets → place a <b>KWGT</b> widget, then tap it to open the editor</li>
+    <li>Add a <b>Text</b> item and set its text to this formula:</li>
+  </ol>
+  <pre>$wg("https://api.dublinbaybuoy.com/rest/v1/readings?select=water_temp&amp;water_temp=not.is.null&amp;order=timestamp.desc&amp;limit=1&amp;apikey=sb_publishable_R5KkIpbiwNajUyx3I4aewQ_S4NI8hl3", json, $[0].water_temp)$°C</pre>
+  <p>Add more Text items for wind and waves by swapping <b>water_temp</b> in the filter for <b>avg_wind</b> or <b>wave_height</b>. Style it however you like — KWGT refreshes web data every 15–30 minutes.</p>
+</section>
+
+<section>
   <span class="label">Apple Watch &amp; Siri</span>
   <p>A Siri Shortcut works on both iPhone and Apple Watch — raise your wrist and ask. Build it once in the <b>Shortcuts</b> app (4 actions):</p>
   <ol>
