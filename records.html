@@ -122,7 +122,10 @@ fetch("records-data.json?t="+Date.now()).then(r=>r.json()).then(d=>{
   $("yearlabel").textContent = d.year;
 
   const tb = $("monthtable").querySelector("tbody");
-  tb.innerHTML = Object.keys(d.month_max).map(m=>{
+  // Explicit order: JS hoists numeric-looking keys ("10") ahead of
+  // zero-padded ones ("01"), which would put October first.
+  const order = Array.from({length:12},(_,i)=>String(i+1).padStart(2,"0"));
+  tb.innerHTML = order.filter(m=>d.month_max[m]).map(m=>{
     const mx=d.month_max[m], mn=d.month_min[m];
     return `<tr><td>${MONTHS[+m-1]}</td>
       <td class="mono">${mx.temp.toFixed(1)}°C<span class="when">${nice(mx.date)}</span></td>
