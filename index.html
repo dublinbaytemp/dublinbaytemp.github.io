@@ -55,6 +55,12 @@ h1.label{margin-bottom:14px}
 .reading-note{margin-top:10px;color:var(--ink2)}
 .reading-note strong{color:var(--ink);font-weight:500}
 .trend{color:var(--ink2)}
+.hero-row{display:flex;gap:44px;align-items:flex-end;flex-wrap:wrap}
+.hero-main{flex:1 1 300px}
+.spark{flex:1 1 240px;max-width:320px;padding-bottom:10px}
+.spark-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:12px}
+.spark-head .mono{font-size:12.5px;color:var(--ink2);white-space:nowrap}
+#sparkline{width:100%;height:auto;display:block;touch-action:none}
 .instruments{display:flex;gap:36px;margin:34px 0 0;flex-wrap:wrap}
 .instruments div{min-width:100px}
 .instruments .val{font:500 26px/1.2 "IBM Plex Mono",monospace;margin-top:6px}
@@ -111,9 +117,20 @@ footer p+p{margin-top:10px}
 <div id="alertbar" role="alert"></div>
 
 <div class="hero">
-  <h1 class="label">Dublin Bay sea temperature</h1>
-  <div class="temp" id="temp">—<span class="unit">°C</span></div>
-  <p class="reading-note" id="readingnote">Reaching the buoy…</p>
+  <div class="hero-row">
+    <div class="hero-main">
+      <h1 class="label">Dublin Bay sea temperature</h1>
+      <div class="temp" id="temp">—<span class="unit">°C</span></div>
+      <p class="reading-note" id="readingnote">Reaching the buoy…</p>
+    </div>
+    <div class="spark" id="sparkbox" hidden>
+      <div class="spark-head">
+        <span class="label">Last 7 days</span>
+        <span class="mono" id="sparktip"></span>
+      </div>
+      <svg id="sparkline" viewBox="0 0 300 110" role="img" aria-label="Sea temperature over the last 7 days"></svg>
+    </div>
+  </div>
   <div class="instruments">
     <div><span class="label">Wind</span><div class="val" id="wind">—</div></div>
     <div id="gustbox" hidden><span class="label">Gusts</span><div class="val" id="gusts">—</div></div>
@@ -172,9 +189,12 @@ async function buoyFetch(path){
   return r.json();
 }
 
+const cssv = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
 async function loadBuoy(){
-  const rows = await buoyFetch("/readings?select=timestamp,water_temp,wave_height,avg_wind,gust_speed,wind_dir&water_temp=not.is.null&order=timestamp.desc&limit=6");
+  const rows = await buoyFetch("/readings?select=timestamp,water_temp,wave_height,avg_wind,gust_speed,wind_dir&water_temp=not.is.null&order=timestamp.desc&limit=170");
   if(!rows.length) throw new Error("no readings");
+  try{ drawSpark(rows); }catch(e){}
   // Skip uncorroborated single-reading sensor spikes.
   let r = rows[0];
   for(const cand of rows){
@@ -204,6 +224,67 @@ async function loadBuoy(){
     $("gustbox").hidden = false;
   }
   if(r.wave_height != null) $("waves").textContent = r.wave_height.toFixed(1) + "m";
+}
+
+function drawSpark(rowsDesc){
+  // Oldest-first, with single-reading sensor spikes dropped.
+  const rows = [...rowsDesc].reverse();
+  const pts = rows.filter((r,i)=>{
+    const lo=Math.max(0,i-2), hi=Math.min(rows.length,i+3);
+    const neigh=[];
+    for(let j=lo;j<hi;j++) if(j!==i) neigh.push(rows[j].water_temp);
+    return neigh.length && Math.abs(r.water_temp-median(neigh))<=1.5;
+  }).map(r=>({t:+new Date(r.timestamp), v:r.water_temp}));
+  if(pts.length < 24) return;
+
+  const W=300,H=110,PT=20,PB=16,PL=6,PR=12;
+  const t0=pts[0].t, t1=pts[pts.length-1].t;
+  const vmin=Math.min(...pts.map(p=>p.v)), vmax=Math.max(...pts.map(p=>p.v));
+  const pad=Math.max((vmax-vmin)*0.15, 0.15);
+  const X=t=>PL+(W-PL-PR)*(t-t0)/(t1-t0), Y=v=>PT+(H-PT-PB)*(1-(v-vmin+pad)/(vmax-vmin+2*pad));
+  let path="M";
+  for(let i=0;i<pts.length;i++) path+=(i?"L":"")+X(pts[i].t).toFixed(1)+","+Y(pts[i].v).toFixed(1);
+
+  let svg = "";
+  // Day boundary ticks with weekday initials
+  const day = new Intl.DateTimeFormat("en-IE",{timeZone:TZ,weekday:"narrow"});
+  const d0 = dublinDayStartUTC();
+  for(let k=-6;k<=0;k++){
+    const ms = +d0 + k*864e5;
+    if(ms<t0 || ms>t1) continue;
+    svg += `<line x1="${X(ms)}" y1="${H-PB}" x2="${X(ms)}" y2="${H-PB+4}" stroke="${cssv('--line')}" stroke-width="1"/>` +
+      `<text x="${X(ms)+2}" y="${H-3}" font-family="IBM Plex Mono" font-size="9.5" fill="${cssv('--ink2')}">${day.format(new Date(ms))}</text>`;
+  }
+  svg += `<path d="${path}" fill="none" stroke="${cssv('--curve')}" stroke-width="2" stroke-linecap="round"/>`;
+  // Direct labels on the week's high and low
+  const pmax = pts.reduce((a,b)=>b.v>a.v?b:a), pmin = pts.reduce((a,b)=>b.v<a.v?b:a);
+  for(const [p,up] of [[pmax,true],[pmin,false]]){
+    const x = Math.min(Math.max(X(p.t),22),W-24);
+    svg += `<text x="${x}" y="${Y(p.v)+(up?-7:13)}" font-family="IBM Plex Mono" font-size="11" fill="${cssv('--ink2')}" text-anchor="middle">${p.v.toFixed(1)}</text>`;
+  }
+  const last = pts[pts.length-1];
+  svg += `<circle cx="${X(last.t)}" cy="${Y(last.v)}" r="4" fill="${cssv('--accent')}"/>` +
+    `<circle id="sparkhover" r="3.5" fill="${cssv('--ink')}" style="display:none"/>`;
+  const el = $("sparkline");
+  el.innerHTML = svg;
+  $("sparkbox").hidden = false;
+
+  const fmt = new Intl.DateTimeFormat("en-IE",{timeZone:TZ,weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false});
+  const idle = `${vmin.toFixed(1)}–${vmax.toFixed(1)}°C this week`;
+  $("sparktip").textContent = idle;
+  el.addEventListener("pointermove", e=>{
+    const r = el.getBoundingClientRect();
+    const t = t0 + (t1-t0)*Math.min(Math.max((e.clientX-r.left)/r.width*W-PL,0),W-PL-PR)/(W-PL-PR);
+    let best = pts[0];
+    for(const p of pts) if(Math.abs(p.t-t)<Math.abs(best.t-t)) best=p;
+    const h = document.getElementById("sparkhover");
+    h.style.display=""; h.setAttribute("cx",X(best.t)); h.setAttribute("cy",Y(best.v));
+    $("sparktip").textContent = `${best.v.toFixed(1)}°C · ${fmt.format(new Date(best.t))}`;
+  });
+  el.addEventListener("pointerleave", ()=>{
+    document.getElementById("sparkhover").style.display="none";
+    $("sparktip").textContent = idle;
+  });
 }
 
 function dublinDayStartUTC(){
