@@ -288,9 +288,19 @@ async function loadWater(){
   }
 }
 
-loadBuoy().catch(()=>{ $("readingnote").innerHTML = '<span class="err">Couldn\'t reach the buoy just now — the latest reading is on <a href="https://x.com/DublinBayTemp">the X feed</a>.</span>'; });
-loadTides().catch(()=>{ $("tidetimes").innerHTML = '<span class="err">Tide service unreachable right now.</span>'; });
-loadWater().catch(()=>{ $("tested").innerHTML = '<span class="err">Water quality data unavailable right now.</span>'; });
+function refresh(){
+  loadBuoy().catch(()=>{ $("readingnote").innerHTML = '<span class="err">Couldn\'t reach the buoy just now — the latest reading is on <a href="https://x.com/DublinBayTemp">the X feed</a>.</span>'; });
+  loadTides().catch(()=>{ $("tidetimes").innerHTML = '<span class="err">Tide service unreachable right now.</span>'; });
+  loadWater().catch(()=>{ $("tested").innerHTML = '<span class="err">Water quality data unavailable right now.</span>'; });
+}
+refresh();
+// Keep an open tab current: refetch every 15 min, and immediately when a
+// backgrounded tab is brought back (the overnight-phone-tab case).
+let last = Date.now();
+setInterval(()=>{ last = Date.now(); refresh(); }, 9e5);
+document.addEventListener("visibilitychange", ()=>{
+  if(!document.hidden && Date.now() - last > 6e4){ last = Date.now(); refresh(); }
+});
 </script>
 </body>
 </html>
