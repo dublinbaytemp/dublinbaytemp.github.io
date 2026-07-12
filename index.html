@@ -107,7 +107,8 @@ footer p+p{margin-top:10px}
 
 <header>
   <div class="mark"><span class="dot"></span>Dublin Bay Temp</div>
-  <nav aria-label="Social links">
+  <nav aria-label="Site links">
+    <a href="records.html">Records</a>
     <a href="https://x.com/DublinBayTemp">X</a>
     <a href="https://bsky.app/profile/dublinbaytemp.bsky.social">Bluesky</a>
     <a href="https://ko-fi.com/dublinbaytemp">Ko-fi</a>
@@ -135,6 +136,7 @@ footer p+p{margin-top:10px}
     <div><span class="label">Wind</span><div class="val" id="wind">—</div></div>
     <div id="gustbox" hidden><span class="label">Gusts</span><div class="val" id="gusts">—</div></div>
     <div><span class="label">Waves</span><div class="val" id="waves">—</div></div>
+    <div id="airbox" hidden><span class="label">Air</span><div class="val" id="air">—</div></div>
   </div>
 </div>
 
@@ -158,12 +160,13 @@ footer p+p{margin-top:10px}
   <div class="follow">
     <a href="https://x.com/DublinBayTemp">Follow on X</a>
     <a href="https://bsky.app/profile/dublinbaytemp.bsky.social">Follow on Bluesky</a>
+    <a href="https://bsky.app/profile/dublinbaytemp.bsky.social/rss">RSS feed</a>
     <a class="kofi" href="https://ko-fi.com/dublinbaytemp">Keep it afloat ☕</a>
   </div>
 </section>
 
 <footer>
-  <p>An unofficial community service for Dublin Bay swimmers. Readings come from the Dublin Bay buoy at the Safe Water Mark (Commissioners of Irish Lights), via the community API at <a href="https://dublinbaybuoy.com">dublinbaybuoy.com</a>. Tide predictions: Marine Institute. Bathing water quality &amp; swim notices: EPA.</p>
+  <p>An unofficial community service for Dublin Bay swimmers. Readings come from the Dublin Bay buoy at the Safe Water Mark (Commissioners of Irish Lights), via the community API at <a href="https://dublinbaybuoy.com">dublinbaybuoy.com</a>. Tide predictions: Marine Institute. Bathing water quality &amp; swim notices: EPA. Air temperature: Met Éireann observations (Dublin Airport).</p>
   <p>Data can lag or misbehave — always judge conditions yourself before getting in.</p>
 </footer>
 
@@ -356,6 +359,16 @@ async function loadTides(){
     `<span>${rising?"Rising":"Falling"} now</span>`;
 }
 
+async function loadAir(){
+  // Met Éireann hourly observations (real readings, not forecast).
+  const obs = await (await fetch("https://prodapi.metweb.ie/observations/dublin/today")).json();
+  const latest = obs[obs.length-1];
+  const t = parseInt(latest.temperature, 10);
+  if(Number.isNaN(t)) return;
+  $("air").textContent = t + "°C";
+  $("airbox").hidden = false;
+}
+
 async function loadWater(){
   const d = await (await fetch("water.json?t="+Date.now())).json();
   const color = s => s==="Excellent"||s==="Good" ? "var(--ok)" : s==="Sufficient" ? "var(--mid)" : "var(--bad)";
@@ -375,6 +388,7 @@ function refresh(){
   loadBuoy().catch(()=>{ $("readingnote").innerHTML = '<span class="err">Couldn\'t reach the buoy just now — the latest reading is on <a href="https://x.com/DublinBayTemp">the X feed</a>.</span>'; });
   loadTides().catch(()=>{ $("tidetimes").innerHTML = '<span class="err">Tide service unreachable right now.</span>'; });
   loadWater().catch(()=>{ $("tested").innerHTML = '<span class="err">Water quality data unavailable right now.</span>'; });
+  loadAir().catch(()=>{});
 }
 refresh();
 // Keep an open tab current: refetch every 15 min, and immediately when a

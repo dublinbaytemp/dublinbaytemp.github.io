@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dublin Bay Sea Temperature Records — the buoy archive</title>
+<meta name="description" content="The warmest and coldest sea temperatures ever recorded by the Dublin Bay buoy, month by month, plus this year against the archive range.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B242C'/%3E%3Ccircle cx='16' cy='14' r='7' fill='%23FF6B35'/%3E%3Cpath d='M2 25c3-2.5 6 2.5 9 0s6 2.5 9 0 6 2.5 10 0' stroke='%23EAF2F0' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B242C; --surface:#10333C; --line:#1D4550;
+  --ink:#EAF2F0; --ink2:#9FB8B9; --accent:#FF6B35; --curve:#4FA3A5;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#EFF4F3; --surface:#FAFCFB; --line:#D5E0DE;
+    --ink:#12333A; --ink2:#557072; --accent:#DE4E17; --curve:#2E7F82;
+  }
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 Barlow,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 64px}
+a{color:inherit}
+.label{font:600 14px/1 "Barlow Condensed",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--ink2)}
+.mono{font-family:"IBM Plex Mono",monospace}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0 0}
+.mark{display:flex;align-items:center;gap:10px;font:600 18px "Barlow Condensed",sans-serif;letter-spacing:.12em;text-transform:uppercase;text-decoration:none}
+.mark .dot{width:14px;height:14px;border-radius:50%;background:var(--accent);flex:none}
+nav a{font:500 14px Barlow,sans-serif;color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--accent)}
+.hero{padding:52px 0 8px}
+h1.label{margin-bottom:10px}
+.intro{color:var(--ink2);max-width:56ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:30px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.tile .big{font:500 44px/1.1 "IBM Plex Mono",monospace;margin:8px 0 4px}
+.tile .when{color:var(--ink2);font-size:15px}
+section{margin-top:60px}
+section>.label{display:block;margin-bottom:16px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+#yearchart{width:100%;height:auto;display:block;touch-action:none}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.legend{display:flex;gap:18px;font-size:14px;color:var(--ink2);align-items:center}
+.legend .sw-line{display:inline-block;width:20px;height:0;border-top:2.5px solid var(--accent);vertical-align:middle;margin-right:7px}
+.legend .sw-band{display:inline-block;width:20px;height:12px;background:var(--curve);opacity:.3;border-radius:3px;vertical-align:middle;margin-right:7px}
+#charttip{font-size:12.5px;color:var(--ink2);white-space:nowrap}
+table{width:100%;border-collapse:collapse;font-size:15.5px}
+th{text-align:left;font:600 13px "Barlow Condensed",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);padding:0 10px 10px}
+td{padding:9px 10px;border-top:1px solid var(--line)}
+td.mono{font-size:15px}
+td .when{color:var(--ink2);font-size:13.5px;display:block}
+footer{margin-top:72px;padding-top:26px;border-top:1px solid var(--line);color:var(--ink2);font-size:14.5px}
+footer p+p{margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a class="mark" href="./"><span class="dot"></span>Dublin Bay Temp</a>
+  <nav><a href="./">← Live conditions</a></nav>
+</header>
+
+<div class="hero">
+  <h1 class="label">Dublin Bay sea temperature records</h1>
+  <p class="intro">Everything the Dublin Bay buoy has measured since <span id="since">January 2023</span> — <span id="count">…</span> hourly readings, filtered for sensor glitches.</p>
+  <div class="tiles">
+    <div class="tile"><span class="label">Warmest ever recorded</span><div class="big" id="maxtemp">—</div><span class="when" id="maxwhen"></span></div>
+    <div class="tile"><span class="label">Coldest ever recorded</span><div class="big" id="mintemp">—</div><span class="when" id="minwhen"></span></div>
+  </div>
+</div>
+
+<section>
+  <span class="label">This year against the archive</span>
+  <div class="panel">
+    <div class="chart-head">
+      <div class="legend">
+        <span><span class="sw-line"></span><span id="yearlabel">2026</span> daily average</span>
+        <span><span class="sw-band"></span>Archive range</span>
+      </div>
+      <span class="mono" id="charttip"></span>
+    </div>
+    <svg id="yearchart" viewBox="0 0 640 280" role="img" aria-label="This year's daily sea temperature against the historical range"></svg>
+  </div>
+</section>
+
+<section>
+  <span class="label">Records by month</span>
+  <table id="monthtable">
+    <thead><tr><th>Month</th><th>Warmest reading</th><th>Coldest reading</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<footer>
+  <p>Readings from the Dublin Bay buoy at the Safe Water Mark (Commissioners of Irish Lights), via the community API at <a href="https://dublinbaybuoy.com">dublinbaybuoy.com</a>. The archive begins in January 2023; single-reading sensor spikes are excluded (a reading must sit within 1.5°C of its neighbours to count).</p>
+  <p>Live conditions: <a href="./">dublinbaytemp.github.io</a> · updated twice daily on <a href="https://x.com/DublinBayTemp">X</a> and <a href="https://bsky.app/profile/dublinbaytemp.bsky.social">Bluesky</a>.</p>
+</footer>
+
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const cssv = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function nice(d){
+  const [y,m,dd] = d.split("-");
+  return `${+dd} ${MONTHS[+m-1].slice(0,3)} ${y}`;
+}
+
+fetch("records-data.json?t="+Date.now()).then(r=>r.json()).then(d=>{
+  $("since").textContent = nice(d.archive_start+"").replace(/^\d+ /,"");
+  $("count").textContent = d.readings.toLocaleString("en-IE");
+  $("maxtemp").textContent = d.all_time_max.temp.toFixed(1)+"°C";
+  $("maxwhen").textContent = nice(d.all_time_max.date);
+  $("mintemp").textContent = d.all_time_min.temp.toFixed(1)+"°C";
+  $("minwhen").textContent = nice(d.all_time_min.date);
+  $("yearlabel").textContent = d.year;
+
+  const tb = $("monthtable").querySelector("tbody");
+  tb.innerHTML = Object.keys(d.month_max).map(m=>{
+    const mx=d.month_max[m], mn=d.month_min[m];
+    return `<tr><td>${MONTHS[+m-1]}</td>
+      <td class="mono">${mx.temp.toFixed(1)}°C<span class="when">${nice(mx.date)}</span></td>
+      <td class="mono">${mn.temp.toFixed(1)}°C<span class="when">${nice(mn.date)}</span></td></tr>`;
+  }).join("");
+
+  drawYear(d);
+}).catch(()=>{ $("charttip").textContent = "Records data unavailable right now."; });
+
+function drawYear(d){
+  const days = Object.keys(d.band);           // "MM-DD" sorted = calendar order
+  const N = days.length;
+  const W=640,H=280,PT=16,PB=26,PL=10,PR=10;
+  let vmin=99, vmax=-99;
+  for(const md of days){ vmin=Math.min(vmin,d.band[md][0]); vmax=Math.max(vmax,d.band[md][1]); }
+  for(const md in d.year_daily){ vmin=Math.min(vmin,d.year_daily[md]); vmax=Math.max(vmax,d.year_daily[md]); }
+  vmin-=0.4; vmax+=0.4;
+  const X=i=>PL+(W-PL-PR)*i/(N-1), Y=v=>PT+(H-PT-PB)*(1-(v-vmin)/(vmax-vmin));
+
+  let upper="";
+  days.forEach((md,i)=>{
+    upper += (i?"L":"M")+X(i).toFixed(1)+","+Y(d.band[md][1]).toFixed(1);
+  });
+  let lower="";
+  for(let i=N-1;i>=0;i--) lower += "L"+X(i).toFixed(1)+","+Y(d.band[days[i]][0]).toFixed(1);
+
+  let line="", pen="M";
+  days.forEach((md,i)=>{
+    if(d.year_daily[md]==null){ pen="M"; return; }
+    line += pen+X(i).toFixed(1)+","+Y(d.year_daily[md]).toFixed(1); pen="L";
+  });
+
+  let svg = `<path d="${upper}${lower}Z" fill="${cssv('--curve')}" opacity="0.22"/>`;
+  for(let m=0;m<12;m++){
+    const i = days.indexOf(`${String(m+1).padStart(2,"0")}-01`);
+    if(i<0) continue;
+    svg += `<text x="${X(i)}" y="${H-8}" font-family="IBM Plex Mono" font-size="11" fill="${cssv('--ink2')}">${MONTHS[m][0]}</text>`;
+  }
+  for(const t of [8,10,12,14,16,18]){
+    if(t<vmin||t>vmax) continue;
+    svg += `<line x1="${PL}" y1="${Y(t)}" x2="${W-PR}" y2="${Y(t)}" stroke="${cssv('--line')}" stroke-width="0.6"/>` +
+      `<text x="${W-PR}" y="${Y(t)-4}" font-family="IBM Plex Mono" font-size="10.5" fill="${cssv('--ink2')}" text-anchor="end">${t}°</text>`;
+  }
+  svg += `<path d="${line}" fill="none" stroke="${cssv('--accent')}" stroke-width="2.2" stroke-linecap="round"/>` +
+    `<circle id="ytip" r="4" fill="${cssv('--ink')}" style="display:none"/>`;
+  const el = $("yearchart");
+  el.innerHTML = svg;
+
+  el.addEventListener("pointermove", e=>{
+    const r = el.getBoundingClientRect();
+    const i = Math.round(Math.min(Math.max(((e.clientX-r.left)/r.width*W-PL)/(W-PL-PR),0),1)*(N-1));
+    const md = days[i], b = d.band[md], yv = d.year_daily[md];
+    const dot = $("ytip");
+    if(yv!=null){ dot.style.display=""; dot.setAttribute("cx",X(i)); dot.setAttribute("cy",Y(yv)); }
+    else dot.style.display="none";
+    $("charttip").textContent = `${+md.slice(3)} ${MONTHS[+md.slice(0,2)-1].slice(0,3)} · ` +
+      (yv!=null?`${d.year}: ${yv.toFixed(1)}°C · `:"") + `archive ${b[0].toFixed(1)}–${b[1].toFixed(1)}°C`;
+  });
+  el.addEventListener("pointerleave", ()=>{ $("ytip").style.display="none"; $("charttip").textContent=""; });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+name: Refresh records data
+
+on:
+  schedule:
+    - cron: '20 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - run: python update_records.py
+      - run: |
+          if [ -n "$(git status --porcelain records-data.json)" ]; then
+            git config user.name "dublin-bay-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add records-data.json
+            git commit -m "Refresh records data"
+            git push
+          fi
