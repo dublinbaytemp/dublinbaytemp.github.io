@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Widgets & Embeds — Dublin Bay Temp</title>
+<meta name="description" content="Embed live Dublin Bay sea conditions on your club's website, add an iPhone home-screen widget, or ask Siri from your Apple Watch.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B242C'/%3E%3Ccircle cx='16' cy='14' r='7' fill='%23FF6B35'/%3E%3Cpath d='M2 25c3-2.5 6 2.5 9 0s6 2.5 9 0 6 2.5 10 0' stroke='%23EAF2F0' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B242C; --surface:#10333C; --line:#1D4550;
+  --ink:#EAF2F0; --ink2:#9FB8B9; --accent:#FF6B35;
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#EFF4F3; --surface:#FAFCFB; --line:#D5E0DE; --ink:#12333A; --ink2:#557072; --accent:#DE4E17}
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 Barlow,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px 64px}
+a{color:inherit}
+.label{font:600 14px/1 "Barlow Condensed",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--ink2)}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0 0}
+.mark{display:flex;align-items:center;gap:10px;font:600 18px "Barlow Condensed",sans-serif;letter-spacing:.12em;text-transform:uppercase;text-decoration:none}
+.mark .dot{width:14px;height:14px;border-radius:50%;background:var(--accent);flex:none}
+nav a{font:500 14px Barlow,sans-serif;color:var(--ink2);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+nav a:hover{color:var(--ink);border-color:var(--accent)}
+.hero{padding:52px 0 8px}
+h1.label{margin-bottom:10px}
+.intro{color:var(--ink2);max-width:58ch}
+section{margin-top:56px}
+section>.label{display:block;margin-bottom:14px}
+section p{color:var(--ink2);max-width:60ch;margin-bottom:14px}
+section p b{color:var(--ink);font-weight:500}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto;font:400 13.5px/1.5 "IBM Plex Mono",monospace;color:var(--ink)}
+ol{color:var(--ink2);padding-left:22px;max-width:60ch}
+ol li{margin-bottom:8px}
+ol li b{color:var(--ink);font-weight:500}
+iframe{border:0;border-radius:14px}
+.btn{display:inline-block;text-decoration:none;font-weight:500;font-size:15.5px;border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--surface);margin-top:4px}
+.btn:hover{border-color:var(--accent)}
+footer{margin-top:72px;padding-top:26px;border-top:1px solid var(--line);color:var(--ink2);font-size:14.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <a class="mark" href="./"><span class="dot"></span>Dublin Bay Temp</a>
+  <nav><a href="./">← Live conditions</a></nav>
+</header>
+
+<div class="hero">
+  <h1 class="label">Widgets &amp; embeds</h1>
+  <p class="intro">Put the bay's live conditions on your club website, your phone's home screen, or your wrist. All free, all using the same buoy data.</p>
+</div>
+
+<section>
+  <span class="label">Embed on your website</span>
+  <p>Live preview — this is what your visitors would see:</p>
+  <iframe src="widget.html" width="320" height="200" title="Dublin Bay sea conditions" loading="lazy"></iframe>
+  <p style="margin-top:16px">Copy this into your site's HTML. It updates itself, adapts to light and dark themes, and links back here. Perfect for swim club, triathlon and sailing club sites.</p>
+  <pre>&lt;iframe src="https://dublinbaytemp.github.io/widget.html"
+  width="320" height="200" title="Dublin Bay sea conditions"
+  style="border:0;border-radius:14px" loading="lazy"&gt;&lt;/iframe&gt;</pre>
+</section>
+
+<section>
+  <span class="label">iPhone home-screen widget</span>
+  <p>Via the free <b>Scriptable</b> app — a live sea temp, wind, waves and next-tide widget on your home screen:</p>
+  <ol>
+    <li>Install <b>Scriptable</b> from the App Store (free)</li>
+    <li>Open it, tap <b>+</b>, and paste in <a href="scriptable-widget.js">this script</a> (open the link, select all, copy)</li>
+    <li>Name it <b>Dublin Bay</b> and save</li>
+    <li>Long-press your home screen → add a <b>Scriptable</b> widget (small) → tap it → choose the <b>Dublin Bay</b> script</li>
+  </ol>
+  <p>It refreshes itself roughly every 15 minutes and opens this site when tapped.</p>
+  <a class="btn" href="scriptable-widget.js">View the widget script</a>
+</section>
+
+<section>
+  <span class="label">Apple Watch &amp; Siri</span>
+  <p>A Siri Shortcut works on both iPhone and Apple Watch — raise your wrist and ask. Build it once in the <b>Shortcuts</b> app (4 actions):</p>
+  <ol>
+    <li><b>Get Contents of URL</b> — paste:<br>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;word-break:break-all">https://api.dublinbaybuoy.com/rest/v1/readings?select=water_temp&amp;water_temp=not.is.null&amp;order=timestamp.desc&amp;limit=1</span><br>
+      then <b>Show More</b> → Headers → add <b>apikey</b> with value:<br>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;word-break:break-all">sb_publishable_R5KkIpbiwNajUyx3I4aewQ_S4NI8hl3</span></li>
+    <li><b>Get Item from List</b> → First Item</li>
+    <li><b>Get Dictionary Value</b> → key <b>water_temp</b></li>
+    <li><b>Show Result</b>: <b>Dublin Bay is [Dictionary Value]°C</b> — Siri speaks whatever's shown</li>
+  </ol>
+  <p>Name it <b>“Sea temp”</b> — then “Hey Siri, sea temp” answers live on iPhone, Apple Watch, HomePod or CarPlay. (The key is the buoy API's public read-only key.)</p>
+</section>
+
+<footer>
+  <p>Data: Dublin Bay buoy (Commissioners of Irish Lights) via <a href="https://dublinbaybuoy.com">dublinbaybuoy.com</a> · Marine Institute · EPA. Questions or a widget request — say hello <a href="https://bsky.app/profile/dublinbaytemp.bsky.social">on Bluesky</a> or <a href="https://x.com/DublinBayTemp">X</a>.</p>
+</footer>
+
+</div>
+<script data-goatcounter="https://dublinbaytemp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dublin Bay conditions widget</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Barlow:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B242C; --line:#1D4550; --ink:#EAF2F0; --ink2:#9FB8B9;
+  --accent:#FF6B35; --ok:#58C29A; --mid:#E4B04A; --bad:#E4604E;
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#FAFCFB; --line:#D5E0DE; --ink:#12333A; --ink2:#557072; --accent:#DE4E17;
+        --ok:#1F8A5D; --mid:#9A6E14; --bad:#BA3927}
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.4 Barlow,system-ui,sans-serif;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
+.top{display:flex;justify-content:space-between;align-items:baseline}
+.label{font:600 11px/1 "Barlow Condensed",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2)}
+.label .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:6px}
+.mono{font-family:"IBM Plex Mono",monospace}
+.temp{font:500 40px/1.1 "IBM Plex Mono",monospace;margin:4px 0 2px}
+.row{color:var(--ink2);font-size:13.5px}
+.row b{color:var(--ink);font-weight:500;font-family:"IBM Plex Mono",monospace;font-size:13px}
+.water{display:flex;align-items:center;gap:6px;margin-top:4px;font-size:13px;color:var(--ink2)}
+.water .st{width:8px;height:8px;border-radius:50%;flex:none}
+a.credit{color:var(--ink2);font-size:11.5px;text-decoration:none;border-top:1px solid var(--line);padding-top:7px;margin-top:8px;display:block}
+a.credit b{color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+<div>
+  <div class="top">
+    <span class="label"><span class="dot"></span>Dublin Bay</span>
+    <span class="label mono" id="when" style="letter-spacing:0"></span>
+  </div>
+  <div class="temp" id="t">—°C</div>
+  <div class="row" id="cond">reaching the buoy…</div>
+  <div class="row" id="tide"></div>
+  <div class="water" id="water" hidden><span class="st" id="wdot"></span><span id="wtext"></span></div>
+</div>
+<a class="credit" href="https://dublinbaytemp.github.io/" target="_blank" rel="noopener">Live · <b>dublinbaytemp.github.io</b></a>
+<script>
+const KEY="sb_publishable_R5KkIpbiwNajUyx3I4aewQ_S4NI8hl3";
+const COMPASS=["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+const $=id=>document.getElementById(id);
+const med=a=>{const s=[...a].sort((x,y)=>x-y);return s[Math.floor(s.length/2)]};
+const fmt=d=>new Intl.DateTimeFormat("en-IE",{timeZone:"Europe/Dublin",hour:"2-digit",minute:"2-digit",hour12:false}).format(d);
+
+fetch("https://api.dublinbaybuoy.com/rest/v1/readings?select=timestamp,water_temp,wave_height,avg_wind,wind_dir&water_temp=not.is.null&order=timestamp.desc&limit=6",{headers:{apikey:KEY}})
+.then(r=>r.json()).then(rows=>{
+  let r=rows[0];
+  for(const c of rows){const o=rows.filter(x=>x!==c).map(x=>x.water_temp);
+    if(Math.abs(c.water_temp-med(o))<=1.5){r=c;break}}
+  $("t").textContent=r.water_temp.toFixed(1)+"°C";
+  $("when").textContent=fmt(new Date(r.timestamp));
+  const bits=[];
+  if(r.avg_wind!=null&&r.wind_dir!=null) bits.push(`<b>${Math.round(r.avg_wind)}kt ${COMPASS[Math.round(r.wind_dir/22.5)%16]}</b> wind`);
+  if(r.wave_height!=null) bits.push(`<b>${r.wave_height.toFixed(1)}m</b> waves`);
+  $("cond").innerHTML=bits.join(" · ")||"";
+}).catch(()=>{$("cond").textContent="buoy unreachable"});
+
+const now=new Date(), to=new Date(+now+30*36e5);
+fetch(`https://erddap.marine.ie/erddap/tabledap/IMI_TidePrediction_HighLow.csv?time,tide_time_category&stationID=%22Dublin_Port%22&time%3E=${now.toISOString().slice(0,19)}Z&time%3C${to.toISOString().slice(0,19)}Z`)
+.then(r=>r.text()).then(t=>{
+  const l=t.trim().split("\n")[2];
+  if(!l) return;
+  const c=l.split(",");
+  $("tide").innerHTML=`next tide: <b>${c[1]==="HIGH"?"High":"Low"} ${fmt(new Date(c[0]))}</b>`;
+}).catch(()=>{});
+
+fetch("water.json?t="+Date.now()).then(r=>r.json()).then(d=>{
+  const st=new Set(d.beaches.map(b=>b.status));
+  const s=st.size===1?[...st][0]:"Mixed";
+  $("wdot").style.background=s==="Excellent"||s==="Good"?"var(--ok)":s==="Sufficient"?"var(--mid)":s==="Mixed"?"var(--mid)":"var(--bad)";
+  $("wtext").textContent="Water: "+s+(d.alerts&&d.alerts.length?" · ⚠ notice in place":"");
+  $("water").hidden=false;
+}).catch(()=>{});
+</script>
+<script data-goatcounter="https://dublinbaytemp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
