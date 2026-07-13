@@ -1,49 +1,94 @@
 {
- "updated": "2026-07-13T08:35:09+00:00",
+ "updated": "2026-07-13T09:58:47+00:00",
  "tested": "2026-07-06",
  "beaches": [
   {
+   "name": "Dollymount Strand",
+   "shore": "North Bay",
+   "status": "Excellent",
+   "tested": "2026-07-05"
+  },
+  {
+   "name": "North Bull Wall",
+   "shore": "North Bay",
+   "status": "Excellent",
+   "tested": "2026-07-05"
+  },
+  {
+   "name": "Half Moon",
+   "shore": "South Wall & Strands",
+   "status": "Excellent",
+   "tested": "2026-07-05"
+  },
+  {
+   "name": "Shelley Banks",
+   "shore": "South Wall & Strands",
+   "status": "Excellent",
+   "tested": "2026-07-05"
+  },
+  {
+   "name": "Sandymount Strand",
+   "shore": "South Wall & Strands",
+   "status": "Excellent",
+   "tested": "2026-07-05"
+  },
+  {
+   "name": "Merrion Strand",
+   "shore": "South Wall & Strands",
+   "status": "Excellent",
+   "tested": "2026-07-05"
+  },
+  {
    "name": "Blackrock Baths",
-   "status": "Excellent",
-   "tested": "2026-07-06"
-  },
-  {
-   "name": "Coliemore Harbour",
-   "status": "Excellent",
-   "tested": "2026-07-06"
-  },
-  {
-   "name": "Corbawn Lane",
-   "status": "Excellent",
-   "tested": "2026-07-06"
-  },
-  {
-   "name": "Dun Laoghaire Baths",
-   "status": "Excellent",
-   "tested": "2026-07-06"
-  },
-  {
-   "name": "Forty Foot",
-   "status": "Excellent",
-   "tested": "2026-07-06"
-  },
-  {
-   "name": "Killiney",
-   "status": "Excellent",
-   "tested": "2026-07-06"
-  },
-  {
-   "name": "Sandycove",
+   "shore": "South Bay",
    "status": "Excellent",
    "tested": "2026-07-06"
   },
   {
    "name": "Seapoint",
+   "shore": "South Bay",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Dun Laoghaire Baths",
+   "shore": "South Bay",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Sandycove",
+   "shore": "South Bay",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Forty Foot",
+   "shore": "South Bay",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Coliemore Harbour",
+   "shore": "South Bay",
    "status": "Excellent",
    "tested": "2026-07-06"
   },
   {
    "name": "White Rock",
+   "shore": "Killiney Bay",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Killiney",
+   "shore": "Killiney Bay",
+   "status": "Excellent",
+   "tested": "2026-07-06"
+  },
+  {
+   "name": "Corbawn Lane",
+   "shore": "Killiney Bay",
    "status": "Excellent",
    "tested": "2026-07-06"
   }
