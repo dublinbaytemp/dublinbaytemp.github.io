@@ -1,6 +1,7 @@
-"""Regenerate records-data.json for the records page: glitch-filtered
-archive records, a historical min-max band per calendar day (previous
-years), and this year's daily means. Run weekly by records.yml."""
+"""Regenerate records-data.json for the records page from the Irish Lights
+public ERDDAP archive (hourly since Feb 2014; 2015 excluded — unreliable
+sensor all year). Cleaning: plausibility bounds then the median-of-
+neighbours spike filter. Run weekly by records.yml."""
 import json
 import statistics
 from collections import defaultdict
@@ -8,40 +9,50 @@ from datetime import datetime, timezone
 
 import requests
 
-API = "https://api.dublinbaybuoy.com/rest/v1/readings"
-KEY = "sb_publishable_R5KkIpbiwNajUyx3I4aewQ_S4NI8hl3"
+IL_ERDDAP = "https://erddap.irishlights.ie/erddap/tabledap/AllMetOcean.csv"
+IL_STATION = "%22Dublin%20Bay%20Buoy%20AIS%22"
+TEMP_MIN, TEMP_MAX = 2.0, 25.0
+EXCLUDE_YEARS = {2015}
 
 
 def main():
-    rows, offset = [], 0
-    while True:
+    year_now = datetime.now(timezone.utc).year
+    rows = []
+    for year in range(2014, year_now + 1):
+        if year in EXCLUDE_YEARS:
+            continue
         r = requests.get(
-            f"{API}?select=timestamp,water_temp&water_temp=not.is.null"
-            f"&order=timestamp.asc&limit=1000&offset={offset}",
-            headers={"apikey": KEY}, timeout=60)
+            f"{IL_ERDDAP}?time,WaterTemperature&LatonName={IL_STATION}"
+            f"&time%3E={year}-01-01T00:00:00Z&time%3C{year+1}-01-01T00:00:00Z",
+            timeout=180)
+        if r.status_code == 404:
+            continue
         r.raise_for_status()
-        batch = r.json()
-        rows.extend(batch)
-        if len(batch) < 1000:
-            break
-        offset += 1000
+        for line in r.text.strip().split("\n")[2:]:
+            t, v = line.split(",")
+            try:
+                temp = float(v)
+            except ValueError:
+                continue
+            if temp != temp or not (TEMP_MIN <= temp <= TEMP_MAX):
+                continue
+            rows.append((t, temp))
+    rows.sort()
 
-    temps = [x["water_temp"] for x in rows]
+    temps = [t for _, t in rows]
     verified = []
     for i in range(len(rows)):
         lo, hi = max(0, i - 2), min(len(rows), i + 3)
         neigh = [temps[j] for j in range(lo, hi) if j != i]
         if neigh and abs(temps[i] - statistics.median(neigh)) <= 1.5:
-            verified.append((rows[i]["timestamp"], temps[i]))
-
-    year_now = datetime.now(timezone.utc).year
+            verified.append(rows[i])
 
     def entry(ts, t):
         return {"temp": round(t, 2), "date": ts[:10]}
 
     month_max, month_min = {}, {}
-    band = defaultdict(lambda: [99.0, -99.0])   # md -> [min, max], prior years
-    this_year = defaultdict(list)               # md -> temps, current year
+    band = defaultdict(lambda: [99.0, -99.0])
+    this_year = defaultdict(list)
     for ts, t in verified:
         m, md, y = ts[5:7], ts[5:10], int(ts[:4])
         if m not in month_max or t > month_max[m]["temp"]:

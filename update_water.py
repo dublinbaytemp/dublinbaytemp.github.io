@@ -9,6 +9,16 @@ import requests
 EPA = "https://data.epa.ie/bw/api/v1"
 # (beach_id, display name, shore zone) — order is the coastline, N to S.
 BAY = [
+    ("IEEABWC020_0000_0600", "Balbriggan Front Strand", "North County"),
+    ("IEEABWC020_0000_0500", "Skerries South Beach", "North County"),
+    ("IEEABWC020_0000_0400", "Loughshinny", "North County"),
+    ("IEEABWC020_0000_0350", "Rush North Beach", "North County"),
+    ("IEEABWC020_0000_0300", "Rush South Beach", "North County"),
+    ("IEEABWC020_0000_0200", "Portrane, the Brook", "North County"),
+    ("IEEABWC020_0000_0100", "Donabate, Balcarrick", "North County"),
+    ("IEEABWC070_0000_0200", "Portmarnock Velvet Strand", "North County"),
+    ("IEEABWC070_0000_0100", "Sutton, Burrow Beach", "Howth"),
+    ("IEEABWC070_0000_0500", "Claremont Beach", "Howth"),
     ("IEEABWC090_0000_0400", "Dollymount Strand", "North Bay"),
     ("BPNBF070000040003", "North Bull Wall", "North Bay"),
     ("IEEABWC090_0000_0350", "Half Moon", "South Wall & Strands"),

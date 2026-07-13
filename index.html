@@ -163,7 +163,7 @@ footer p+p{margin-top:10px}
 </section>
 
 <section aria-labelledby="wlabel">
-  <span class="label" id="wlabel">Bathing water quality · around the bay, north to south</span>
+  <span class="label" id="wlabel">Bathing water quality · Dublin coast, north to south</span>
   <div class="bayline" id="spots"></div>
   <p class="tested" id="tested"></p>
 </section>
@@ -406,7 +406,7 @@ async function loadWater(){
     </div>`;
   }
   $("spots").innerHTML = html;
-  $("tested").textContent = "EPA samples — DLR and Dublin City councils test weekly in season, so dates can differ by spot.";
+  $("tested").textContent = "EPA samples — Fingal, Dublin City and DLR councils test weekly in season, so dates can differ by spot.";
   if(d.alerts && d.alerts.length){
     const bar = $("alertbar");
     bar.style.display = "block";
