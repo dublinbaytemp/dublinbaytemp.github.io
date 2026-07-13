@@ -75,11 +75,26 @@ fetch(`https://erddap.marine.ie/erddap/tabledap/IMI_TidePrediction_HighLow.csv?t
 }).catch(()=>{});
 
 fetch("water.json?t="+Date.now()).then(r=>r.json()).then(d=>{
-  const st=new Set(d.beaches.map(b=>b.status));
-  const s=st.size===1?[...st][0]:"Mixed";
-  $("wdot").style.background=s==="Excellent"||s==="Good"?"var(--ok)":s==="Sufficient"?"var(--mid)":s==="Mixed"?"var(--mid)":"var(--bad)";
-  $("wtext").textContent="Water: "+s+(d.alerts&&d.alerts.length?" · ⚠ notice in place":"");
-  $("water").hidden=false;
+  let dot, text;
+  if(d.alerts && d.alerts.length){
+    dot = "var(--bad)";
+    const names = d.alerts.map(a=>a.beach);
+    text = "⚠ Swim notice: " + names[0] + (names.length>1 ? ` +${names.length-1}` : "");
+  }else{
+    const st = d.beaches.map(b=>b.status).filter(Boolean);
+    const worst = st.includes("Poor") ? "Poor" : st.includes("Sufficient") ? "Sufficient" : null;
+    if(worst){
+      const n = st.filter(s=>s===worst).length;
+      dot = worst==="Poor" ? "var(--bad)" : "var(--mid)";
+      text = `Water: ${worst} at ${n} spot${n===1?"":"s"}`;
+    }else{
+      dot = "var(--ok)";
+      text = "Water: " + (new Set(st).size===1 ? st[0] : "Good");
+    }
+  }
+  $("wdot").style.background = dot;
+  $("wtext").textContent = text;
+  $("water").hidden = false;
 }).catch(()=>{});
 </script>
 <script data-goatcounter="https://dublinbaytemp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
