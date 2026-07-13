@@ -77,11 +77,24 @@ section>.label{display:block;margin-bottom:18px}
 }
 .tide-times span b{color:var(--ink);font-weight:500}
 
-.spots{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
-.spot{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 14px}
-.spot .dot{width:10px;height:10px;border-radius:50%;flex:none}
-.spot .name{font-weight:500;font-size:15.5px}
-.spot .st{font-size:13.5px;color:var(--ink2)}
+/* "The line" — Dublin Bay's swim spots as a transit-style map, N to S. */
+.bayline{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 22px 14px}
+.stop,.zone{display:flex;align-items:center;min-height:44px}
+.rail{width:34px;align-self:stretch;position:relative;flex:none}
+.rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:5px;background:var(--curve);transform:translateX(-50%);opacity:.55}
+.stop:first-child .rail::before{top:50%}
+.stop:last-child .rail::before,.zone:last-child .rail::before{bottom:50%}
+.st-dot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 1.5px var(--curve)}
+.stop.stale .st-dot{opacity:.45}
+.stop.alerted .st-dot{box-shadow:0 0 0 2px var(--bad)}
+@media (prefers-reduced-motion: no-preference){
+  .stop.alerted .st-dot{animation:alertring 1.8s ease-in-out infinite}
+  @keyframes alertring{0%,100%{box-shadow:0 0 0 2px var(--bad)}50%{box-shadow:0 0 0 5px var(--bad)}}
+}
+.stop-body{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:6px 0;min-width:0;flex:1}
+.stop .name{font-weight:500;font-size:16px}
+.stop .st{font-size:13.5px;color:var(--ink2);font-family:"IBM Plex Mono",monospace}
+.zone .zlabel{font:600 12px/1 "Barlow Condensed",sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--ink2);padding:10px 0 2px}
 .tested{margin-top:14px;color:var(--ink2);font-size:15px}
 
 .follow{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
@@ -150,8 +163,8 @@ footer p+p{margin-top:10px}
 </section>
 
 <section aria-labelledby="wlabel">
-  <span class="label" id="wlabel">Bathing water quality · Dún Laoghaire-Rathdown</span>
-  <div class="spots" id="spots"></div>
+  <span class="label" id="wlabel">Bathing water quality · around the bay, north to south</span>
+  <div class="bayline" id="spots"></div>
   <p class="tested" id="tested"></p>
 </section>
 
@@ -373,11 +386,27 @@ async function loadAir(){
 async function loadWater(){
   const d = await (await fetch("water.json?t="+Date.now())).json();
   const color = s => s==="Excellent"||s==="Good" ? "var(--ok)" : s==="Sufficient" ? "var(--mid)" : "var(--bad)";
-  $("spots").innerHTML = d.beaches.map(b=>
-    `<div class="spot"><span class="dot" style="background:${color(b.status)}"></span>
-     <span><span class="name">${b.name}</span><br><span class="st">${b.status}</span></span></div>`).join("");
-  const days = Math.round((Date.now() - new Date(d.tested))/864e5);
-  $("tested").textContent = `EPA samples, tested ${days<=0?"today":days+" day"+(days===1?"":"s")+" ago"} — sampled weekly in season.`;
+  const alerted = new Set((d.alerts||[]).map(a=>a.beach));
+  const daysAgo = t => Math.max(0, Math.round((Date.now() - new Date(t))/864e5));
+  let html = "", zone = null;
+  for(const b of d.beaches){
+    if(b.shore !== zone){
+      zone = b.shore;
+      html += `<div class="zone"><span class="rail"></span><span class="zlabel">${zone}</span></div>`;
+    }
+    const days = b.tested ? daysAgo(b.tested) : null;
+    const stale = days != null && days > 21;
+    const cls = "stop" + (alerted.has(b.name) ? " alerted" : "") + (stale ? " stale" : "");
+    const st = alerted.has(b.name) ? "⚠ swim notice"
+      : b.status ? b.status + (days != null ? ` · ${stale ? "last result "+days+"d old" : days === 0 ? "today" : days+"d ago"}` : "")
+      : "no recent result";
+    html += `<div class="${cls}">
+      <span class="rail"><span class="st-dot" style="background:${alerted.has(b.name) ? "var(--bad)" : b.status ? color(b.status) : "var(--line)"}"></span></span>
+      <div class="stop-body"><span class="name">${b.name}</span><span class="st">${st}</span></div>
+    </div>`;
+  }
+  $("spots").innerHTML = html;
+  $("tested").textContent = "EPA samples — DLR and Dublin City councils test weekly in season, so dates can differ by spot.";
   if(d.alerts && d.alerts.length){
     const bar = $("alertbar");
     bar.style.display = "block";
