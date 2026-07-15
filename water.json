@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-15T12:54:54+00:00",
+ "updated": "2026-07-15T18:41:51+00:00",
  "tested": "2026-07-06",
  "beaches": [
   {
@@ -153,5 +153,10 @@
    "tested": "2026-07-06"
   }
  ],
- "alerts": []
+ "alerts": [
+  {
+   "beach": "Claremont Beach",
+   "type": "Bathing is prohibited"
+  }
+ ]
 }
