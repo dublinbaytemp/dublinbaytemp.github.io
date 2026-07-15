@@ -76,6 +76,18 @@ def main():
         ],
         "alerts": alerts,
     }
+    # Hourly runs: skip the write when only the timestamp would change, so
+    # the workflow's commit step stays quiet (no page reads "updated").
+    try:
+        with open("water.json") as f:
+            prev = json.load(f)
+    except Exception:
+        prev = None
+    if prev is not None and all(
+        prev.get(k) == out[k] for k in out if k != "updated"
+    ):
+        print("water.json unchanged — not rewriting.")
+        return
     with open("water.json", "w") as f:
         json.dump(out, f, indent=1)
         f.write("\n")

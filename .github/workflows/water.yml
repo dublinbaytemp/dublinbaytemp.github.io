@@ -2,7 +2,10 @@ name: Refresh water quality data
 
 on:
   schedule:
-    - cron: '35 5,11,17 * * *'
+    # Hourly so a new EPA swim notice reaches the alert bar/map/widgets
+    # within ~1h; update_water.py skips the write when nothing changed,
+    # so quiet hours produce no commits.
+    - cron: '35 * * * *'
   workflow_dispatch:
 
 permissions:
