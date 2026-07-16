@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-16T04:41:48+00:00",
+ "updated": "2026-07-16T16:00:55+00:00",
  "tested": "2026-07-13",
  "beaches": [
   {
@@ -154,6 +154,10 @@
   }
  ],
  "alerts": [
+  {
+   "beach": "Dollymount Strand",
+   "type": "Bathing is temporarily prohibited"
+  },
   {
    "beach": "Claremont Beach",
    "type": "Bathing is prohibited"
