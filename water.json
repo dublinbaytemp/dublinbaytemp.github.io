@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-18T15:31:55+00:00",
+ "updated": "2026-07-19T19:45:18+00:00",
  "tested": "2026-07-14",
  "beaches": [
   {
@@ -154,6 +154,10 @@
   }
  ],
  "alerts": [
+  {
+   "beach": "Rush South Beach",
+   "type": "Bathing is temporarily prohibited"
+  },
   {
    "beach": "Dollymount Strand",
    "type": "Bathing is temporarily prohibited"
