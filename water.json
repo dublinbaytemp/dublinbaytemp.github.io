@@ -1,6 +1,6 @@
 {
- "updated": "2026-07-19T19:45:18+00:00",
- "tested": "2026-07-14",
+ "updated": "2026-07-21T15:23:14+00:00",
+ "tested": "2026-07-16",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
@@ -59,8 +59,8 @@
   {
    "name": "Claremont Beach",
    "shore": "Howth",
-   "status": "Poor",
-   "tested": "2026-07-13"
+   "status": "Excellent",
+   "tested": "2026-07-16"
   },
   {
    "name": "Dollymount Strand",
