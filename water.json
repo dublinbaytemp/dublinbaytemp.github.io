@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-21T15:23:14+00:00",
+ "updated": "2026-07-22T15:21:02+00:00",
  "tested": "2026-07-16",
  "beaches": [
   {
@@ -154,6 +154,10 @@
   }
  ],
  "alerts": [
+  {
+   "beach": "Dun Laoghaire Baths",
+   "type": "Bathing is advised against"
+  },
   {
    "beach": "Rush South Beach",
    "type": "Bathing is temporarily prohibited"
