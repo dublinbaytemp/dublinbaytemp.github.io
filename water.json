@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-28T10:10:14+00:00",
+ "updated": "2026-07-29T18:33:18+00:00",
  "tested": "2026-07-20",
  "beaches": [
   {
@@ -153,10 +153,5 @@
    "tested": "2026-07-20"
   }
  ],
- "alerts": [
-  {
-   "beach": "Dun Laoghaire Baths",
-   "type": "Bathing is advised against"
-  }
- ]
+ "alerts": []
 }
