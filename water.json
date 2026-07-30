@@ -1,72 +1,72 @@
 {
- "updated": "2026-07-29T18:33:18+00:00",
- "tested": "2026-07-20",
+ "updated": "2026-07-30T04:38:03+00:00",
+ "tested": "2026-07-27",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "Skerries South Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-13"
+   "tested": "2026-07-27"
   },
   {
    "name": "Loughshinny",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-13"
+   "tested": "2026-07-27"
   },
   {
    "name": "Rush North Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-13"
+   "tested": "2026-07-27"
   },
   {
    "name": "Rush South Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "Portrane, the Brook",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-13"
+   "tested": "2026-07-27"
   },
   {
    "name": "Donabate, Balcarrick",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-13"
+   "tested": "2026-07-27"
   },
   {
    "name": "Portmarnock Velvet Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-13"
+   "tested": "2026-07-27"
   },
   {
    "name": "Sutton, Burrow Beach",
    "shore": "Howth",
    "status": "Excellent",
-   "tested": "2026-07-13"
+   "tested": "2026-07-27"
   },
   {
    "name": "Claremont Beach",
    "shore": "Howth",
    "status": "Excellent",
-   "tested": "2026-07-16"
+   "tested": "2026-07-27"
   },
   {
    "name": "Dollymount Strand",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "North Bull Wall",
@@ -78,79 +78,79 @@
    "name": "Half Moon",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-07-14"
+   "tested": "2026-07-27"
   },
   {
    "name": "Shelley Banks",
    "shore": "South Wall & Strands",
-   "status": "Excellent",
-   "tested": "2026-07-14"
+   "status": "Good",
+   "tested": "2026-07-27"
   },
   {
    "name": "Sandymount Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-07-14"
+   "tested": "2026-07-27"
   },
   {
    "name": "Merrion Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "Blackrock Baths",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "Seapoint",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "Dun Laoghaire Baths",
    "shore": "South Bay",
-   "status": "Poor",
-   "tested": "2026-07-20"
+   "status": "Excellent",
+   "tested": "2026-07-27"
   },
   {
    "name": "Sandycove",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "Forty Foot",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "Coliemore Harbour",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "White Rock",
    "shore": "Killiney Bay",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "Killiney",
    "shore": "Killiney Bay",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   },
   {
    "name": "Corbawn Lane",
    "shore": "Killiney Bay",
    "status": "Excellent",
-   "tested": "2026-07-20"
+   "tested": "2026-07-27"
   }
  ],
  "alerts": []
