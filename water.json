@@ -1,66 +1,66 @@
 {
- "updated": "2026-08-13T03:09:30+00:00",
+ "updated": "2026-08-13T12:11:56+00:00",
  "tested": "2026-08-10",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Skerries South Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-27"
+   "tested": "2026-08-10"
   },
   {
    "name": "Loughshinny",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-27"
+   "tested": "2026-08-10"
   },
   {
    "name": "Rush North Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-27"
+   "tested": "2026-08-10"
   },
   {
    "name": "Rush South Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-27"
+   "tested": "2026-08-10"
   },
   {
    "name": "Portrane, the Brook",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-27"
+   "tested": "2026-08-10"
   },
   {
    "name": "Donabate, Balcarrick",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-27"
+   "tested": "2026-08-10"
   },
   {
    "name": "Portmarnock Velvet Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-07-27"
+   "tested": "2026-08-10"
   },
   {
    "name": "Sutton, Burrow Beach",
    "shore": "Howth",
    "status": "Excellent",
-   "tested": "2026-07-27"
+   "tested": "2026-08-10"
   },
   {
    "name": "Claremont Beach",
    "shore": "Howth",
    "status": "Excellent",
-   "tested": "2026-07-27"
+   "tested": "2026-08-10"
   },
   {
    "name": "Dollymount Strand",
