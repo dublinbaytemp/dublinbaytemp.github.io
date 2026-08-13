@@ -1,6 +1,6 @@
 {
- "updated": "2026-08-08T02:31:05+00:00",
- "tested": "2026-08-04",
+ "updated": "2026-08-13T03:09:30+00:00",
+ "tested": "2026-08-10",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
@@ -102,55 +102,55 @@
    "name": "Blackrock Baths",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Seapoint",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Dun Laoghaire Baths",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Sandycove",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Forty Foot",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Coliemore Harbour",
    "shore": "South Bay",
-   "status": "Sufficient",
-   "tested": "2026-08-04"
+   "status": "Excellent",
+   "tested": "2026-08-10"
   },
   {
    "name": "White Rock",
    "shore": "Killiney Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Killiney",
    "shore": "Killiney Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Corbawn Lane",
    "shore": "Killiney Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   }
  ],
  "alerts": []
