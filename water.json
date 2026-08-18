@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-13T12:11:56+00:00",
+ "updated": "2026-08-18T13:24:58+00:00",
  "tested": "2026-08-10",
  "beaches": [
   {
@@ -66,37 +66,37 @@
    "name": "Dollymount Strand",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "North Bull Wall",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Half Moon",
    "shore": "South Wall & Strands",
-   "status": "Good",
-   "tested": "2026-08-04"
+   "status": "Excellent",
+   "tested": "2026-08-10"
   },
   {
    "name": "Shelley Banks",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Sandymount Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-04"
+   "tested": "2026-08-10"
   },
   {
    "name": "Merrion Strand",
    "shore": "South Wall & Strands",
-   "status": "Excellent",
-   "tested": "2026-08-04"
+   "status": "Good",
+   "tested": "2026-08-10"
   },
   {
    "name": "Blackrock Baths",
