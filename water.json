@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-20T11:54:54+00:00",
+ "updated": "2026-08-20T15:06:42+00:00",
  "tested": "2026-08-17",
  "beaches": [
   {
@@ -66,37 +66,37 @@
    "name": "Dollymount Strand",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-17"
   },
   {
    "name": "North Bull Wall",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-17"
   },
   {
    "name": "Half Moon",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-17"
   },
   {
    "name": "Shelley Banks",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-17"
   },
   {
    "name": "Sandymount Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-17"
   },
   {
    "name": "Merrion Strand",
    "shore": "South Wall & Strands",
    "status": "Good",
-   "tested": "2026-08-10"
+   "tested": "2026-08-17"
   },
   {
    "name": "Blackrock Baths",
@@ -153,5 +153,10 @@
    "tested": "2026-08-10"
   }
  ],
- "alerts": []
+ "alerts": [
+  {
+   "beach": "Portmarnock Velvet Strand",
+   "type": "Bathing is prohibited"
+  }
+ ]
 }
