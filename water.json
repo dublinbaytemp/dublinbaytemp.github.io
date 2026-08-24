@@ -1,6 +1,6 @@
 {
- "updated": "2026-08-21T02:09:04+00:00",
- "tested": "2026-08-17",
+ "updated": "2026-08-24T13:31:50+00:00",
+ "tested": "2026-08-21",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
@@ -48,7 +48,7 @@
    "name": "Portmarnock Velvet Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-21"
   },
   {
    "name": "Sutton, Burrow Beach",
