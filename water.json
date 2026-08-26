@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-26T14:21:51+00:00",
+ "updated": "2026-08-26T16:01:55+00:00",
  "tested": "2026-08-21",
  "beaches": [
   {
@@ -155,7 +155,11 @@
  ],
  "alerts": [
   {
-   "beach": "Sandymount Strand",
+   "beach": "Claremont Beach",
+   "type": "Bathing is prohibited"
+  },
+  {
+   "beach": "Dollymount Strand",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
@@ -163,7 +167,7 @@
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
-   "beach": "Dollymount Strand",
+   "beach": "Sandymount Strand",
    "type": "Prior Warning bathing water quality may be affected"
   }
  ]
