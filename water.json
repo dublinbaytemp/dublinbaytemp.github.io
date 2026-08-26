@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-24T13:31:50+00:00",
+ "updated": "2026-08-26T13:35:12+00:00",
  "tested": "2026-08-21",
  "beaches": [
   {
@@ -153,10 +153,5 @@
    "tested": "2026-08-17"
   }
  ],
- "alerts": [
-  {
-   "beach": "Portmarnock Velvet Strand",
-   "type": "Bathing is prohibited"
-  }
- ]
+ "alerts": []
 }
