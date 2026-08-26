@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-26T13:35:12+00:00",
+ "updated": "2026-08-26T14:21:51+00:00",
  "tested": "2026-08-21",
  "beaches": [
   {
@@ -153,5 +153,18 @@
    "tested": "2026-08-17"
   }
  ],
- "alerts": []
+ "alerts": [
+  {
+   "beach": "Sandymount Strand",
+   "type": "Prior Warning bathing water quality may be affected"
+  },
+  {
+   "beach": "Half Moon",
+   "type": "Prior Warning bathing water quality may be affected"
+  },
+  {
+   "beach": "Dollymount Strand",
+   "type": "Prior Warning bathing water quality may be affected"
+  }
+ ]
 }
