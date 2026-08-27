@@ -1,102 +1,102 @@
 {
- "updated": "2026-08-26T18:18:23+00:00",
- "tested": "2026-08-21",
+ "updated": "2026-08-27T11:55:14+00:00",
+ "tested": "2026-08-24",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-17"
+   "tested": "2026-08-24"
   },
   {
    "name": "Skerries South Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-24"
   },
   {
    "name": "Loughshinny",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-24"
   },
   {
    "name": "Rush North Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-24"
   },
   {
    "name": "Rush South Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-24"
   },
   {
    "name": "Portrane, the Brook",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-24"
   },
   {
    "name": "Donabate, Balcarrick",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-24"
   },
   {
    "name": "Portmarnock Velvet Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-21"
+   "tested": "2026-08-24"
   },
   {
    "name": "Sutton, Burrow Beach",
    "shore": "Howth",
    "status": "Excellent",
-   "tested": "2026-08-10"
+   "tested": "2026-08-24"
   },
   {
    "name": "Claremont Beach",
    "shore": "Howth",
-   "status": "Excellent",
-   "tested": "2026-08-10"
+   "status": "Poor",
+   "tested": "2026-08-24"
   },
   {
    "name": "Dollymount Strand",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-17"
+   "tested": "2026-08-24"
   },
   {
    "name": "North Bull Wall",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-17"
+   "tested": "2026-08-24"
   },
   {
    "name": "Half Moon",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-17"
+   "tested": "2026-08-24"
   },
   {
    "name": "Shelley Banks",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-17"
+   "tested": "2026-08-24"
   },
   {
    "name": "Sandymount Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-17"
+   "tested": "2026-08-24"
   },
   {
    "name": "Merrion Strand",
    "shore": "South Wall & Strands",
-   "status": "Good",
-   "tested": "2026-08-17"
+   "status": "Excellent",
+   "tested": "2026-08-24"
   },
   {
    "name": "Blackrock Baths",
@@ -155,7 +155,11 @@
  ],
  "alerts": [
   {
-   "beach": "Rush North Beach",
+   "beach": "Claremont Beach",
+   "type": "Bathing is prohibited"
+  },
+  {
+   "beach": "Portmarnock Velvet Strand",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
@@ -163,15 +167,11 @@
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
-   "beach": "Portmarnock Velvet Strand",
+   "beach": "Rush North Beach",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
-   "beach": "Claremont Beach",
-   "type": "Bathing is prohibited"
-  },
-  {
-   "beach": "Dollymount Strand",
+   "beach": "Sandymount Strand",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
@@ -179,7 +179,7 @@
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
-   "beach": "Sandymount Strand",
+   "beach": "Dollymount Strand",
    "type": "Prior Warning bathing water quality may be affected"
   }
  ]
