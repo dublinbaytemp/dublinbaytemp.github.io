@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-28T06:15:16+00:00",
+ "updated": "2026-08-28T18:57:11+00:00",
  "tested": "2026-08-24",
  "beaches": [
   {
@@ -156,27 +156,31 @@
  "alerts": [
   {
    "beach": "Forty Foot",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "White Rock",
-   "type": "Prior Warning bathing water quality may be affected"
+   "type": "Bathing is temporarily prohibited"
   },
   {
    "beach": "Sandycove",
-   "type": "Prior Warning bathing water quality may be affected"
+   "type": "Bathing is temporarily prohibited"
   },
   {
    "beach": "Dun Laoghaire Baths",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Seapoint",
-   "type": "Prior Warning bathing water quality may be affected"
+   "type": "Bathing is temporarily prohibited"
   },
   {
    "beach": "Killiney",
-   "type": "Prior Warning bathing water quality may be affected"
+   "type": "Bathing is temporarily prohibited"
+  },
+  {
+   "beach": "Seapoint",
+   "type": "Bathing is temporarily prohibited"
+  },
+  {
+   "beach": "White Rock",
+   "type": "Bathing is temporarily prohibited"
+  },
+  {
+   "beach": "Dollymount Strand",
+   "type": "Bathing is temporarily prohibited"
   },
   {
    "beach": "Claremont Beach",
@@ -200,10 +204,6 @@
   },
   {
    "beach": "Half Moon",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Dollymount Strand",
    "type": "Prior Warning bathing water quality may be affected"
   }
  ]
