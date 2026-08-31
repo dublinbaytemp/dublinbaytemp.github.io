@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-29T18:47:01+00:00",
+ "updated": "2026-08-31T14:19:33+00:00",
  "tested": "2026-08-27",
  "beaches": [
   {
@@ -155,23 +155,15 @@
  ],
  "alerts": [
   {
-   "beach": "Rush North Beach",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Balbriggan Front Strand",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
    "beach": "Portmarnock Velvet Strand",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
-   "beach": "Claremont Beach",
-   "type": "Bathing is prohibited"
+   "beach": "Forty Foot",
+   "type": "Bathing is temporarily prohibited"
   },
   {
-   "beach": "Forty Foot",
+   "beach": "White Rock",
    "type": "Bathing is temporarily prohibited"
   },
   {
@@ -183,16 +175,24 @@
    "type": "Bathing is temporarily prohibited"
   },
   {
-   "beach": "Killiney",
-   "type": "Bathing is temporarily prohibited"
-  },
-  {
    "beach": "Seapoint",
    "type": "Bathing is temporarily prohibited"
   },
   {
-   "beach": "White Rock",
+   "beach": "Killiney",
    "type": "Bathing is temporarily prohibited"
+  },
+  {
+   "beach": "Rush North Beach",
+   "type": "Prior Warning bathing water quality may be affected"
+  },
+  {
+   "beach": "Balbriggan Front Strand",
+   "type": "Prior Warning bathing water quality may be affected"
+  },
+  {
+   "beach": "Claremont Beach",
+   "type": "Bathing is prohibited"
   },
   {
    "beach": "Dollymount Strand",
