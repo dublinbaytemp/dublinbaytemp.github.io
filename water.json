@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-02T09:50:31+00:00",
+ "updated": "2026-09-02T14:38:45+00:00",
  "tested": "2026-08-27",
  "beaches": [
   {
@@ -155,6 +155,10 @@
  ],
  "alerts": [
   {
+   "beach": "Claremont Beach",
+   "type": "Bathing is prohibited"
+  },
+  {
    "beach": "Forty Foot",
    "type": "Bathing is temporarily prohibited"
   },
@@ -197,10 +201,6 @@
   {
    "beach": "Balbriggan Front Strand",
    "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Claremont Beach",
-   "type": "Bathing is prohibited"
   },
   {
    "beach": "Sandymount Strand",
