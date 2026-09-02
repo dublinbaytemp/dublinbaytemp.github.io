@@ -1,6 +1,6 @@
 {
- "updated": "2026-09-02T14:38:45+00:00",
- "tested": "2026-08-27",
+ "updated": "2026-09-02T18:53:57+00:00",
+ "tested": "2026-08-30",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
@@ -66,37 +66,37 @@
    "name": "Dollymount Strand",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-08-30"
   },
   {
    "name": "North Bull Wall",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-08-30"
   },
   {
    "name": "Half Moon",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-08-30"
   },
   {
    "name": "Shelley Banks",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-08-30"
   },
   {
    "name": "Sandymount Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-08-30"
   },
   {
    "name": "Merrion Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-08-30"
   },
   {
    "name": "Blackrock Baths",
@@ -155,7 +155,11 @@
  ],
  "alerts": [
   {
-   "beach": "Claremont Beach",
+   "beach": "Portmarnock Velvet Strand",
+   "type": "Prior Warning bathing water quality may be affected"
+  },
+  {
+   "beach": "Balbriggan Front Strand",
    "type": "Bathing is prohibited"
   },
   {
@@ -184,22 +188,6 @@
   },
   {
    "beach": "Half Moon",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Dollymount Strand",
-   "type": "Bathing is temporarily prohibited"
-  },
-  {
-   "beach": "Portmarnock Velvet Strand",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Rush North Beach",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Balbriggan Front Strand",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
