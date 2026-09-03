@@ -1,12 +1,12 @@
 {
- "updated": "2026-09-02T18:53:57+00:00",
- "tested": "2026-08-30",
+ "updated": "2026-09-03T04:56:16+00:00",
+ "tested": "2026-08-31",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
    "shore": "North County",
-   "status": "Excellent",
-   "tested": "2026-08-24"
+   "status": "Poor",
+   "tested": "2026-08-31"
   },
   {
    "name": "Skerries South Beach",
@@ -24,7 +24,7 @@
    "name": "Rush North Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-08-31"
   },
   {
    "name": "Rush South Beach",
@@ -48,7 +48,7 @@
    "name": "Portmarnock Velvet Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-08-31"
   },
   {
    "name": "Sutton, Burrow Beach",
@@ -59,8 +59,8 @@
   {
    "name": "Claremont Beach",
    "shore": "Howth",
-   "status": "Poor",
-   "tested": "2026-08-27"
+   "status": "Excellent",
+   "tested": "2026-08-31"
   },
   {
    "name": "Dollymount Strand",
