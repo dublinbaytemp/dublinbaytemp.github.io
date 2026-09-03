@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-03T14:42:13+00:00",
+ "updated": "2026-09-03T18:50:29+00:00",
  "tested": "2026-08-31",
  "beaches": [
   {
@@ -66,37 +66,37 @@
    "name": "Dollymount Strand",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-30"
+   "tested": "2026-08-31"
   },
   {
    "name": "North Bull Wall",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-30"
+   "tested": "2026-08-31"
   },
   {
    "name": "Half Moon",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-30"
+   "tested": "2026-08-31"
   },
   {
    "name": "Shelley Banks",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-30"
+   "tested": "2026-08-31"
   },
   {
    "name": "Sandymount Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-30"
+   "tested": "2026-08-31"
   },
   {
    "name": "Merrion Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-30"
+   "tested": "2026-08-31"
   },
   {
    "name": "Blackrock Baths",
@@ -155,11 +155,11 @@
  ],
  "alerts": [
   {
-   "beach": "Dollymount Strand",
+   "beach": "Half Moon",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
-   "beach": "Half Moon",
+   "beach": "Dollymount Strand",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
@@ -173,30 +173,6 @@
   {
    "beach": "Portmarnock Velvet Strand",
    "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Forty Foot",
-   "type": "Bathing is temporarily prohibited"
-  },
-  {
-   "beach": "White Rock",
-   "type": "Bathing is temporarily prohibited"
-  },
-  {
-   "beach": "Sandycove",
-   "type": "Bathing is temporarily prohibited"
-  },
-  {
-   "beach": "Dun Laoghaire Baths",
-   "type": "Bathing is temporarily prohibited"
-  },
-  {
-   "beach": "Seapoint",
-   "type": "Bathing is temporarily prohibited"
-  },
-  {
-   "beach": "Killiney",
-   "type": "Bathing is temporarily prohibited"
   }
  ]
 }
