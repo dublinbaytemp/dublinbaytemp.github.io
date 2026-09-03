@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-03T04:56:16+00:00",
+ "updated": "2026-09-03T14:42:13+00:00",
  "tested": "2026-08-31",
  "beaches": [
   {
@@ -155,12 +155,24 @@
  ],
  "alerts": [
   {
-   "beach": "Portmarnock Velvet Strand",
+   "beach": "Dollymount Strand",
+   "type": "Prior Warning bathing water quality may be affected"
+  },
+  {
+   "beach": "Half Moon",
+   "type": "Prior Warning bathing water quality may be affected"
+  },
+  {
+   "beach": "Sandymount Strand",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
    "beach": "Balbriggan Front Strand",
    "type": "Bathing is prohibited"
+  },
+  {
+   "beach": "Portmarnock Velvet Strand",
+   "type": "Prior Warning bathing water quality may be affected"
   },
   {
    "beach": "Forty Foot",
@@ -185,14 +197,6 @@
   {
    "beach": "Killiney",
    "type": "Bathing is temporarily prohibited"
-  },
-  {
-   "beach": "Half Moon",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Sandymount Strand",
-   "type": "Prior Warning bathing water quality may be affected"
   }
  ]
 }
