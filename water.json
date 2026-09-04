@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-04T09:52:39+00:00",
+ "updated": "2026-09-04T14:29:59+00:00",
  "tested": "2026-08-31",
  "beaches": [
   {
@@ -154,6 +154,10 @@
   }
  ],
  "alerts": [
+  {
+   "beach": "Balbriggan Front Strand",
+   "type": "Prior Warning bathing water quality may be affected"
+  },
   {
    "beach": "Dollymount Strand",
    "type": "Prior Warning bathing water quality may be affected"
