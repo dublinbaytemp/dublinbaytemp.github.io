@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-04T14:29:59+00:00",
+ "updated": "2026-09-07T16:37:42+00:00",
  "tested": "2026-08-31",
  "beaches": [
   {
@@ -156,6 +156,10 @@
  "alerts": [
   {
    "beach": "Balbriggan Front Strand",
+   "type": "Bathing is prohibited"
+  },
+  {
+   "beach": "Balbriggan Front Strand",
    "type": "Prior Warning bathing water quality may be affected"
   },
   {
@@ -169,10 +173,6 @@
   {
    "beach": "Half Moon",
    "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Balbriggan Front Strand",
-   "type": "Bathing is prohibited"
   },
   {
    "beach": "Portmarnock Velvet Strand",
