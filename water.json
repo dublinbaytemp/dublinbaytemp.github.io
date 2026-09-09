@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-08T18:56:12+00:00",
+ "updated": "2026-09-09T18:48:24+00:00",
  "tested": "2026-08-31",
  "beaches": [
   {
@@ -155,27 +155,11 @@
  ],
  "alerts": [
   {
-   "beach": "Balbriggan Front Strand",
-   "type": "Prior Warning bathing water quality may be affected"
+   "beach": "Dollymount Strand",
+   "type": "Bathing is temporarily prohibited"
   },
   {
    "beach": "Portmarnock Velvet Strand",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Balbriggan Front Strand",
-   "type": "Bathing is prohibited"
-  },
-  {
-   "beach": "Dollymount Strand",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Sandymount Strand",
-   "type": "Prior Warning bathing water quality may be affected"
-  },
-  {
-   "beach": "Half Moon",
    "type": "Prior Warning bathing water quality may be affected"
   }
  ]
