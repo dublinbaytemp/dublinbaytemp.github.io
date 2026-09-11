@@ -1,156 +1,156 @@
 {
- "updated": "2026-09-09T18:48:24+00:00",
- "tested": "2026-08-31",
+ "updated": "2026-09-11T05:04:28+00:00",
+ "tested": "2026-09-08",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
    "shore": "North County",
-   "status": "Poor",
-   "tested": "2026-08-31"
+   "status": "Excellent",
+   "tested": "2026-09-07"
   },
   {
    "name": "Skerries South Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-09-07"
   },
   {
    "name": "Loughshinny",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-09-07"
   },
   {
    "name": "Rush North Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "Rush South Beach",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-09-07"
   },
   {
    "name": "Portrane, the Brook",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-09-07"
   },
   {
    "name": "Donabate, Balcarrick",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-09-07"
   },
   {
    "name": "Portmarnock Velvet Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "Sutton, Burrow Beach",
    "shore": "Howth",
    "status": "Excellent",
-   "tested": "2026-08-24"
+   "tested": "2026-09-07"
   },
   {
    "name": "Claremont Beach",
    "shore": "Howth",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "Dollymount Strand",
    "shore": "North Bay",
-   "status": "Excellent",
-   "tested": "2026-08-31"
+   "status": "Poor",
+   "tested": "2026-09-08"
   },
   {
    "name": "North Bull Wall",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-08"
   },
   {
    "name": "Half Moon",
    "shore": "South Wall & Strands",
-   "status": "Excellent",
-   "tested": "2026-08-31"
+   "status": "Good",
+   "tested": "2026-09-08"
   },
   {
    "name": "Shelley Banks",
    "shore": "South Wall & Strands",
-   "status": "Excellent",
-   "tested": "2026-08-31"
+   "status": "Sufficient",
+   "tested": "2026-09-08"
   },
   {
    "name": "Sandymount Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-08"
   },
   {
    "name": "Merrion Strand",
    "shore": "South Wall & Strands",
-   "status": "Excellent",
-   "tested": "2026-08-31"
+   "status": "Sufficient",
+   "tested": "2026-09-08"
   },
   {
    "name": "Blackrock Baths",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "Seapoint",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "Dun Laoghaire Baths",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "Sandycove",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "Forty Foot",
    "shore": "South Bay",
-   "status": "Excellent",
-   "tested": "2026-08-31"
+   "status": "Good",
+   "tested": "2026-09-07"
   },
   {
    "name": "Coliemore Harbour",
    "shore": "South Bay",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "White Rock",
    "shore": "Killiney Bay",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "Killiney",
    "shore": "Killiney Bay",
    "status": "Excellent",
-   "tested": "2026-08-31"
+   "tested": "2026-09-07"
   },
   {
    "name": "Corbawn Lane",
    "shore": "Killiney Bay",
-   "status": "Good",
-   "tested": "2026-08-31"
+   "status": "Excellent",
+   "tested": "2026-09-07"
   }
  ],
  "alerts": [
