@@ -1,6 +1,6 @@
 {
- "updated": "2026-09-11T05:04:28+00:00",
- "tested": "2026-09-08",
+ "updated": "2026-09-11T17:52:00+00:00",
+ "tested": "2026-09-09",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
@@ -65,8 +65,8 @@
   {
    "name": "Dollymount Strand",
    "shore": "North Bay",
-   "status": "Poor",
-   "tested": "2026-09-08"
+   "status": "Sufficient",
+   "tested": "2026-09-09"
   },
   {
    "name": "North Bull Wall",
@@ -78,7 +78,7 @@
    "name": "Half Moon",
    "shore": "South Wall & Strands",
    "status": "Good",
-   "tested": "2026-09-08"
+   "tested": "2026-09-09"
   },
   {
    "name": "Shelley Banks",
@@ -90,7 +90,7 @@
    "name": "Sandymount Strand",
    "shore": "South Wall & Strands",
    "status": "Excellent",
-   "tested": "2026-09-08"
+   "tested": "2026-09-09"
   },
   {
    "name": "Merrion Strand",
