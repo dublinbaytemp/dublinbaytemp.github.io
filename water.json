@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-11T17:52:00+00:00",
+ "updated": "2026-09-12T14:18:55+00:00",
  "tested": "2026-09-09",
  "beaches": [
   {
@@ -157,10 +157,6 @@
   {
    "beach": "Dollymount Strand",
    "type": "Bathing is temporarily prohibited"
-  },
-  {
-   "beach": "Portmarnock Velvet Strand",
-   "type": "Prior Warning bathing water quality may be affected"
   }
  ]
 }
