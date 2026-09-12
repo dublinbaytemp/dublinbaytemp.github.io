@@ -1,12 +1,12 @@
 {
- "updated": "2026-09-12T14:18:55+00:00",
- "tested": "2026-09-09",
+ "updated": "2026-09-12T17:23:34+00:00",
+ "tested": "2026-09-10",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-09-07"
+   "tested": "2026-09-10"
   },
   {
    "name": "Skerries South Beach",
@@ -48,7 +48,7 @@
    "name": "Portmarnock Velvet Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-09-07"
+   "tested": "2026-09-09"
   },
   {
    "name": "Sutton, Burrow Beach",
