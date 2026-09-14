@@ -1,6 +1,6 @@
 {
- "updated": "2026-09-12T17:23:34+00:00",
- "tested": "2026-09-10",
+ "updated": "2026-09-14T14:21:27+00:00",
+ "tested": "2026-09-11",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
@@ -65,8 +65,8 @@
   {
    "name": "Dollymount Strand",
    "shore": "North Bay",
-   "status": "Sufficient",
-   "tested": "2026-09-09"
+   "status": "Excellent",
+   "tested": "2026-09-11"
   },
   {
    "name": "North Bull Wall",
@@ -153,10 +153,5 @@
    "tested": "2026-09-07"
   }
  ],
- "alerts": [
-  {
-   "beach": "Dollymount Strand",
-   "type": "Bathing is temporarily prohibited"
-  }
- ]
+ "alerts": []
 }
