@@ -1,12 +1,12 @@
 {
- "updated": "2026-09-14T14:21:27+00:00",
- "tested": "2026-09-11",
+ "updated": "2026-09-16T17:14:05+00:00",
+ "tested": "2026-09-14",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
    "shore": "North County",
    "status": "Excellent",
-   "tested": "2026-09-10"
+   "tested": "2026-09-14"
   },
   {
    "name": "Skerries South Beach",
