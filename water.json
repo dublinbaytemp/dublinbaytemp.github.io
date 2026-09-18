@@ -1,6 +1,6 @@
 {
- "updated": "2026-09-18T06:28:23+00:00",
- "tested": "2026-09-14",
+ "updated": "2026-09-18T11:40:38+00:00",
+ "tested": "2026-09-15",
  "beaches": [
   {
    "name": "Balbriggan Front Strand",
@@ -66,7 +66,7 @@
    "name": "Dollymount Strand",
    "shore": "North Bay",
    "status": "Excellent",
-   "tested": "2026-09-11"
+   "tested": "2026-09-15"
   },
   {
    "name": "North Bull Wall",
@@ -125,8 +125,8 @@
   {
    "name": "Forty Foot",
    "shore": "South Bay",
-   "status": "Good",
-   "tested": "2026-09-07"
+   "status": "Excellent",
+   "tested": "2026-09-14"
   },
   {
    "name": "Coliemore Harbour",
